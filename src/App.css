@@ -111,7 +111,7 @@ main {
 	line-height: 1.7;
 }
 
-.hero h1 + p {
+.hero p + p {
 	margin-bottom: 12px;
 }
 
@@ -398,6 +398,7 @@ main {
 	margin-top: 20px;
 	border: 1px solid var(--border);
 	padding: 12px 16px;
+	background-color: var(--surface);
 }
 .share-label {
 	font-size: 0.75rem;
@@ -427,6 +428,7 @@ main {
 
 /* Book promo */
 .book-promo {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -434,47 +436,18 @@ main {
 	border: 1px solid var(--border);
 	padding: 12px 16px;
 	margin-bottom: 20px;
+	background-color: var(--surface);
+	transition: border-color 0.15s;
+	cursor: pointer;
 }
-.book-promo-label {
-	font-size: 0.75rem;
-	color: var(--muted);
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
+.book-promo:hover {
+	border-color: var(--accent);
 }
-.book-promo-link {
-	display: flex;
-	align-items: baseline;
-	gap: 8px;
-	text-decoration: none;
-	color: var(--text);
-	transition: color 0.15s;
-}
-.book-promo-link:hover {
+.book-promo:hover .book-promo-label,
+.book-promo:hover .book-title,
+.book-promo:hover .book-author {
 	color: var(--accent);
 }
-.book-title {
-	font-family: var(--mono);
-	font-size: 0.9rem;
-	font-weight: 600;
-	letter-spacing: 0.03em;
-}
-.book-author {
-	font-family: var(--mono);
-	font-size: 0.75rem;
-	color: var(--muted);
-	letter-spacing: 0.05em;
-}
-
-/* Book promo */
-.book-promo {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 12px;
-	border: 1px solid var(--border);
-	padding: 12px 16px;
-	margin-bottom: 20px;
-}
 .book-promo-label {
 	font-size: 0.75rem;
 	color: var(--muted);
@@ -482,12 +455,21 @@ main {
 	letter-spacing: 0.08em;
 }
 .book-promo-link {
+	position: static;
 	display: flex;
 	align-items: baseline;
 	gap: 8px;
 	text-decoration: none;
 	color: var(--text);
 	transition: color 0.15s;
+}
+.book-promo-link::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+.book-promo:hover .book-promo-link {
+	color: var(--accent);
 }
 .book-promo-link:hover {
 	color: var(--accent);
