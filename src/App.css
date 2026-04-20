@@ -111,6 +111,10 @@ main {
 	line-height: 1.7;
 }
 
+.hero h1 + p {
+	margin-bottom: 12px;
+}
+
 .examples {
 	border: 1px solid var(--border);
 	overflow: hidden;

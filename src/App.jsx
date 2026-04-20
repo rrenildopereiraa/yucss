@@ -244,7 +244,7 @@ export default function CSSWind() {
 											Each question shows either a Tailwind class or a CSS value
 											you type the other side from memory.
 										</p>
-										<p style={{textAlign: "center", fontWeight: "bold", color: "#fff"}}> 20 questions · 4 minutes.</p>
+										<p>20 questions · 4 minutes.</p>
 									</div>
 
 									<div className="examples">
