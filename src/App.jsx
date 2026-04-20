@@ -446,8 +446,15 @@ export default function CSSWind() {
 							© {new Date().getFullYear()}{" "}
 							<a href="http://www.suedeapple.co.uk" target="_blank">
 								suedespple
+							</a>{" "}
+							|{" "}
+							<a
+								href="https://github.com/suedeapple/csswind"
+								target="_blank"
+								rel="noreferrer"
+							>
+								GitHub{" "}
 							</a>
-							. All rights reserved.
 						</p>
 					</footer>
 				</div>
