@@ -551,13 +551,6 @@ main {
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 }
-.r-sub {
-	font-size: 0.75rem;
-	color: var(--muted);
-	margin-bottom: 8px;
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-}
 .r-score {
 	display: flex;
 	align-items: baseline;

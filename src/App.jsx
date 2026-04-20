@@ -453,7 +453,6 @@ export default function CSSWind() {
 							<section className="results-section">
 								<div className="card">
 									<div className="r-header">
-										<div className="r-sub">Mixed · {TOTAL_Q} questions</div>
 										<div className="r-score">
 											<span className="r-num">{correctCount}</span>
 											<span className="r-denom">/ {TOTAL_Q}</span>
