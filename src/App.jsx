@@ -53,8 +53,8 @@ function scoreMessage(score) {
 	if (score >= 660) return "Solid. A few classes still hiding from you.";
 	if (score >= 620) return "Not bad. Your co-workers are impressed (probably).";
 	if (score >= 580) return "Decent. You know enough to be dangerous.";
-	if (score >= 540) return "Getting there. The docs are rooting for you.";
-	if (score >= 500) return "More than half right. Statistically, not terrible.";
+	if (score >= 540) return "Getting there. Keep grinding.";
+	if (score >= 500) return "Statistically, not terrible.";
 	if (score >= 460)
 		return "Respectable. Rome wasn't built with Tailwind either.";
 	if (score >= 420) return "Keep going. You're in the learning zone.";
@@ -62,10 +62,10 @@ function scoreMessage(score) {
 	if (score >= 340) return "Some good answers in there somewhere.";
 	if (score >= 300) return "You tried. The effort was visible.";
 	if (score >= 260) return "Hey, you showed up. That's step one.";
-	if (score >= 220) return "The docs miss you. Visit them sometime.";
+	if (score >= 220) return "Somewhere out there, a CSS class is crying.";
 	if (score >= 180) return "Try Googling next time.";
 	if (score >= 140) return "Tailwind v4 probably wouldn't help either.";
-	if (score >= 80) return "Bold of you to submit that.";
+	if (score >= 80) return "Have you considered a career in backend?";
 	return "Yes, centering a div is hard. Keep at it.";
 }
 

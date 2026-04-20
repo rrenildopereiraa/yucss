@@ -109,10 +109,11 @@ main {
 	font-size: 0.9rem;
 	color: var(--muted);
 	line-height: 1.7;
+	margin-bottom: 12px;
 }
 
 .hero p + p {
-	margin-bottom: 12px;
+	margin-bottom: 0;
 }
 
 .examples {
