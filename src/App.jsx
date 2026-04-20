@@ -291,6 +291,10 @@ export default function CSSWind() {
 													"Forgiving checking",
 													"capitalisation, spaces around : and trailing semicolons are all ignored.",
 												],
+												[
+													"Tailwind v3 CSS values",
+													"spacing answers use fixed values like 1rem rather than Tailwind v4's calc(var(--spacing) * 4).",
+												],
 											].map(([bold, rest]) => (
 												<li key={bold} className="instr-item">
 													<span className="instr-dot">//</span>
