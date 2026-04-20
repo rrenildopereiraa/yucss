@@ -69,6 +69,7 @@ main {
 }
 .logo-accent {
 	color: var(--accent);
+	text-transform: lowercase;
 }
 .domain {
 	font-family: var(--mono);
