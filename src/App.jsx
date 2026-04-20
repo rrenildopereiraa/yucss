@@ -293,7 +293,7 @@ export default function CSSWind() {
 												],
 												[
 													"Tailwind v3 CSS values",
-													"spacing answers use fixed values like 1rem rather than Tailwind v4's calc(var(--spacing) * 4).",
+													"Uses fixed values like 1rem rather than Tailwind v4's calc(var(--spacing) * 4).",
 												],
 											].map(([bold, rest]) => (
 												<li key={bold} className="instr-item">
