@@ -468,7 +468,7 @@ export default function CSSWind() {
 										</div>
 										<div className="stat">
 											<div className="stat-n red">{wrongCount}</div>
-											<div className="stat-l">Wrong / passed</div>
+											<div className="stat-l">Passed</div>
 										</div>
 										<div className="stat">
 											<div className="stat-n muted">{scorePercent}%</div>
