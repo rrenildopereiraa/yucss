@@ -421,6 +421,86 @@ main {
 	border-color: var(--accent);
 }
 
+/* Book promo */
+.book-promo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	border: 1px solid var(--border);
+	padding: 12px 16px;
+	margin-bottom: 20px;
+}
+.book-promo-label {
+	font-size: 0.75rem;
+	color: var(--muted);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+.book-promo-link {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+	text-decoration: none;
+	color: var(--text);
+	transition: color 0.15s;
+}
+.book-promo-link:hover {
+	color: var(--accent);
+}
+.book-title {
+	font-family: var(--mono);
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.03em;
+}
+.book-author {
+	font-family: var(--mono);
+	font-size: 0.75rem;
+	color: var(--muted);
+	letter-spacing: 0.05em;
+}
+
+/* Book promo */
+.book-promo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	border: 1px solid var(--border);
+	padding: 12px 16px;
+	margin-bottom: 20px;
+}
+.book-promo-label {
+	font-size: 0.75rem;
+	color: var(--muted);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+.book-promo-link {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+	text-decoration: none;
+	color: var(--text);
+	transition: color 0.15s;
+}
+.book-promo-link:hover {
+	color: var(--accent);
+}
+.book-title {
+	font-family: var(--mono);
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.03em;
+}
+.book-author {
+	font-family: var(--mono);
+	font-size: 0.75rem;
+	color: var(--muted);
+	letter-spacing: 0.05em;
+}
+
 /* Buttons */
 .btn-row {
 	display: flex;

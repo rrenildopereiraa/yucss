@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { POOL } from "./pool.js";
 
-const TOTAL_Q = window.location.hostname === "localhost" ? 20 : 20;
+const TOTAL_Q = window.location.hostname === "localhost" ? 1 : 20;
 const TOTAL_TIME = 240;
 
 // ─── UTILS ────────────────────────────────────────────────────────────────────
@@ -329,6 +329,23 @@ export default function CSSWind() {
 											LinkedIn
 										</a>
 									</div>
+
+									<div className="book-promo">
+										<span className="book-promo-label">
+											Recommended reading
+										</span>
+										<a
+											className="book-promo-link"
+											href="https://theosoti.com/you-dont-need-js/?utm_source=csswind&utm_medium=referral&utm_campaign=home"
+											target="_blank"
+											rel="noreferrer"
+										>
+											<span className="book-title">
+												You Don&rsquo;t Need JS
+											</span>
+											<span className="book-author">by Theo Soti</span>
+										</a>
+									</div>
 								</section>
 							</>
 						)}
@@ -499,6 +516,23 @@ export default function CSSWind() {
 											rel="noreferrer"
 										>
 											LinkedIn
+										</a>
+									</div>
+
+									<div className="book-promo">
+										<span className="book-promo-label">
+											Recommended reading
+										</span>
+										<a
+											className="book-promo-link"
+											href="https://theosoti.com/you-dont-need-js/?utm_source=csswind&utm_medium=referral&utm_campaign=results"
+											target="_blank"
+											rel="noreferrer"
+										>
+											<span className="book-title">
+												You Don&rsquo;t Need JS
+											</span>
+											<span className="book-author">by Theo Soti</span>
 										</a>
 									</div>
 
