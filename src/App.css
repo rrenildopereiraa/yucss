@@ -553,10 +553,18 @@ main {
 }
 .r-score {
 	display: flex;
-	align-items: baseline;
-	gap: 4px;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
 	justify-content: center;
 	margin-bottom: 6px;
+}
+.r-score-label {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--muted);
+	margin-bottom: 4px;
 }
 .r-num {
 	font-size: 3.5rem;
@@ -565,12 +573,10 @@ main {
 	line-height: 1;
 }
 .r-denom {
-	font-size: 1.5rem;
-	color: var(--muted);
+	font-size: 2rem;
 }
 .r-msg {
 	font-size: 0.875rem;
-	color: var(--muted);
 }
 
 .stats {

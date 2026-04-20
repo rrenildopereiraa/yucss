@@ -37,12 +37,36 @@ function formatTime(seconds) {
 	return `${m}:${s}`;
 }
 
-function scoreMessage(n) {
-	if (n >= 19) return "Flawless. You ARE the docs.";
-	if (n >= 15) return "Excellent recall!";
-	if (n >= 11) return "Solid. A few gaps to fill.";
-	if (n >= 7) return "Getting there, keep at it!";
-	return "Everyone starts somewhere!";
+function scoreMessage(score) {
+	if (score >= 1100) return "Flawless. You ARE the docs, or Kevin Powell.";
+	if (score >= 1060) return "Basically a Tailwind compiler at this point.";
+	if (score >= 1020)
+		return "You could write the cheat sheet. Or maybe you already have?";
+	if (score >= 980) return "Adam Wathan wants to hire you.";
+	if (score >= 940) return "Certified CSS nerd. Wear it with pride.";
+	if (score >= 900) return "Excellent recall and blistering speed!";
+	if (score >= 860) return "Your brain loads faster than most websites.";
+	if (score >= 820) return "Really solid. Your brain is a stylesheet.";
+	if (score >= 780) return "Great work. Tailwind would be proud. Probably.";
+	if (score >= 740) return "Strong score. The utility classes fear you.";
+	if (score >= 700) return "Good effort. Still faster than reading the docs.";
+	if (score >= 660) return "Solid. A few classes still hiding from you.";
+	if (score >= 620) return "Not bad. Your co-workers are impressed (probably).";
+	if (score >= 580) return "Decent. You know enough to be dangerous.";
+	if (score >= 540) return "Getting there. The docs are rooting for you.";
+	if (score >= 500) return "More than half right. Statistically, not terrible.";
+	if (score >= 460)
+		return "Respectable. Rome wasn't built with Tailwind either.";
+	if (score >= 420) return "Keep going. You're in the learning zone.";
+	if (score >= 380) return "A work in progress. Like most stylesheets.";
+	if (score >= 340) return "Some good answers in there somewhere.";
+	if (score >= 300) return "You tried. The effort was visible.";
+	if (score >= 260) return "Hey, you showed up. That's step one.";
+	if (score >= 220) return "The docs miss you. Visit them sometime.";
+	if (score >= 180) return "Try Googling next time.";
+	if (score >= 140) return "Tailwind v4 probably wouldn't help either.";
+	if (score >= 80) return "Bold of you to submit that.";
+	return "Yes, centering a div is hard. Keep at it.";
 }
 
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
@@ -55,6 +79,7 @@ export default function CSSWind() {
 	const [hint, setHint] = useState("");
 	const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
 	const [results, setResults] = useState([]);
+	const [timeTaken, setTimeTaken] = useState(0);
 
 	const inputRef = useRef(null);
 	const timerRef = useRef(null);
@@ -111,6 +136,7 @@ export default function CSSWind() {
 		setHint("");
 		setTimeLeft(TOTAL_TIME);
 		setResults([]);
+		setTimeTaken(0);
 		setPhase("quiz");
 	}
 
@@ -127,6 +153,7 @@ export default function CSSWind() {
 
 	function endGame(final) {
 		clearInterval(timerRef.current);
+		setTimeTaken(TOTAL_TIME - timeLeft);
 		setResults(final);
 		setPhase("results");
 	}
@@ -197,7 +224,7 @@ export default function CSSWind() {
 	const wrongCount = results.filter(
 		(r) => r.status === "passed" || r.status === "wrong",
 	).length;
-	const scorePercent = Math.round((correctCount / TOTAL_Q) * 100);
+	const finalScore = correctCount * 50 + Math.max(0, TOTAL_TIME - timeTaken);
 	const hintClass = `hint${inputState === "correct" ? " ok" : inputState === "wrong" ? " bad" : hint ? " pass" : ""}`;
 
 	const shareUrl = encodeURIComponent("https://www.csswind.com");
@@ -210,7 +237,7 @@ export default function CSSWind() {
 		linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`,
 	};
 	const shareText = encodeURIComponent(
-		`I scored ${correctCount}/${TOTAL_Q} on csswind — the CSS and Tailwind quiz. Can you beat me?`,
+		`I scored ${finalScore} on csswind — the CSS and Tailwind quiz. Can you beat me?`,
 	);
 	const shareLinks = {
 		x: `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`,
@@ -454,10 +481,10 @@ export default function CSSWind() {
 								<div className="card">
 									<div className="r-header">
 										<div className="r-score">
-											<span className="r-num">{correctCount}</span>
-											<span className="r-denom">/ {TOTAL_Q}</span>
+											<div className="r-score-label">Score</div>
+											<span className="r-num">{finalScore}</span>
 										</div>
-										<div className="r-msg">{scoreMessage(correctCount)}</div>
+										<div className="r-msg">{scoreMessage(finalScore)}</div>
 									</div>
 
 									<div className="stats">
@@ -470,27 +497,11 @@ export default function CSSWind() {
 											<div className="stat-l">Passed</div>
 										</div>
 										<div className="stat">
-											<div className="stat-n muted">{scorePercent}%</div>
-											<div className="stat-l">Score</div>
-										</div>
-									</div>
-
-									<div className="review-title">Review</div>
-									<div className="review">
-										{results.map((r, i) => (
-											<div key={i} className="review-row">
-												<div className={`review-dot ${r.status}`} />
-												<div>
-													<div className="review-tw">{r.tw}</div>
-													<div className="review-css">{r.css}</div>
-													{r.status !== "correct" && r.chosen && (
-														<div className="review-bad">
-															You wrote: {r.chosen}
-														</div>
-													)}
-												</div>
+											<div className="stat-n muted">
+												{formatTime(timeTaken)}
 											</div>
-										))}
+											<div className="stat-l">Time</div>
+										</div>
 									</div>
 
 									<div className="share-row">
