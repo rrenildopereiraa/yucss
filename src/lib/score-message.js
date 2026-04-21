@@ -10,7 +10,7 @@ export function scoreMessage(correct) {
 			"Amazing. Did you have the docs open in another tab?",
 			"Adam Wathan wants to hire you.",
 			"Perfect score. You don't use autocomplete, do you?",
-			"10 for 10. The CSS gods bow.",
+			"10 out of 10. The CSS gods bow.",
 		]);
 	if (correct === 9)
 		return pick([
