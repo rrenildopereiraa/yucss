@@ -1,7 +1,15 @@
 /* Ad banner */
+
 .ad-banner {
-	margin-bottom: 20px;
 	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.ad-banner .adsbygoogle {
+	display: block;
+	width: 100%;
+	max-width: 100%;
 }
 
 /* Footer */
