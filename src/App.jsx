@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
-import { POOL } from "./pool.js";
+import { POOL } from "./lib/pool.js";
+import { scoreMessage } from "./lib/score-message.js";
 
 const TOTAL_Q = window.location.hostname === "localhost" ? 10 : 10;
 const TOTAL_TIME = 120;
@@ -28,45 +29,18 @@ function normalize(s) {
 }
 
 function checkAnswer(input, expected) {
-	return normalize(input) === normalize(expected);
+	const n = normalize(input);
+	const e = normalize(expected);
+	if (n === e) return true;
+	// treat "0" and "0px" (or any "0<unit>") as equivalent
+	const zeroUnit = /^(.*?)\b0px\b(.*)$/;
+	return n === e.replace(/\b0px\b/g, "0") || e === n.replace(/\b0px\b/g, "0");
 }
 
 function formatTime(seconds) {
 	const m = String(Math.floor(seconds / 60)).padStart(2, "0");
 	const s = String(seconds % 60).padStart(2, "0");
 	return `${m}:${s}`;
-}
-
-function scoreMessage(score) {
-	if (score >= 580) return "Flawless. You ARE the docs, or Kevin Powell.";
-	if (score >= 555) return "Basically a Tailwind compiler at this point.";
-	if (score >= 530)
-		return "You could write the cheat sheet. Or maybe you already have?";
-	if (score >= 505) return "Adam Wathan wants to hire you.";
-	if (score >= 480) return "Certified CSS nerd. Wear it with pride.";
-	if (score >= 455) return "Excellent recall and blistering speed!";
-	if (score >= 430) return "Your brain loads faster than most websites.";
-	if (score >= 410) return "Really solid. Your brain is a stylesheet.";
-	if (score >= 390) return "Great work. Tailwind would be proud. Probably.";
-	if (score >= 370) return "Strong score. The utility classes fear you.";
-	if (score >= 350) return "Good effort. Still faster than reading the docs.";
-	if (score >= 330) return "Solid. A few classes still hiding from you.";
-	if (score >= 310) return "Not bad. Your co-workers are impressed (probably).";
-	if (score >= 290) return "Decent. You know enough to be dangerous.";
-	if (score >= 270) return "Getting there. Keep grinding.";
-	if (score >= 250) return "Statistically, not terrible.";
-	if (score >= 230)
-		return "Respectable. Rome wasn't built with Tailwind either.";
-	if (score >= 210) return "Keep going. You're in the learning zone.";
-	if (score >= 190) return "A work in progress. Like most stylesheets.";
-	if (score >= 170) return "Some good answers in there somewhere.";
-	if (score >= 150) return "You tried. The effort was visible.";
-	if (score >= 130) return "Hey, you showed up. That's step one.";
-	if (score >= 110) return "Somewhere out there, a CSS class is crying.";
-	if (score >= 90) return "Try Googling next time.";
-	if (score >= 70) return "Tailwind v4 probably wouldn't help either.";
-	if (score >= 40) return "Have you considered a career in backend?";
-	return "Yes, centering a div is hard. Keep at it.";
 }
 
 // ─── AD BANNER ────────────────────────────────────────────────────────────────
@@ -287,7 +261,7 @@ export default function CSSWind() {
 		linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`,
 	};
 	const shareText = encodeURIComponent(
-		`I scored ${finalScore} on CSSwind — the CSS and Tailwind quiz. Can you beat me?`,
+		`I scored ${finalScore} on CSSwind (${difficulty} mode) — the CSS and Tailwind quiz. Can you beat me?`,
 	);
 	const shareLinks = {
 		x: `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`,
@@ -549,7 +523,7 @@ export default function CSSWind() {
 												<div className="r-score-label">Score</div>
 												<span className="r-num">{finalScore}</span>
 											</div>
-											<div className="r-msg">{scoreMessage(finalScore)}</div>
+											<div className="r-msg">{scoreMessage(correctCount)}</div>
 										</div>
 
 										<div className="stats">

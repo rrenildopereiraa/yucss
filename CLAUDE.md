@@ -9,12 +9,18 @@
 
 ## Key files
 
-| File            | Purpose                                                        |
-| --------------- | -------------------------------------------------------------- |
-| `src/App.jsx`   | Main component: game logic, state, rendering                   |
-| `src/pool.js`   | Question bank — the only file to edit when adding questions    |
-| `src/App.css`   | All component styles                                           |
-| `src/index.css` | Global reset, CSS variables (colours, fonts, radii), keyframes |
+| File                      | Purpose                                                        |
+| ------------------------- | -------------------------------------------------------------- |
+| `src/App.jsx`             | Main component: game logic, state, rendering                   |
+| `src/main.jsx`            | Entry point — mounts App                                       |
+| `src/lib/pool.js`         | Question bank — the only file to edit when adding questions    |
+| `src/lib/score-message.js`| End-of-round score message copy                                |
+| `src/App.css`             | All component styles                                           |
+| `src/index.css`           | Global reset, CSS variables (colours, fonts, radii), keyframes |
+| `public/favicon.svg`      | Site favicon                                                   |
+| `public/logo.svg`         | Site logo                                                      |
+| `public/og.png`           | Open Graph image                                               |
+| `index.html`              | HTML shell — Google Fonts import lives here                    |
 
 ## CSS variables
 
@@ -33,7 +39,7 @@ All design tokens live in `src/index.css` under `:root`. Changing them reskins t
 
 ## Adding questions
 
-All questions live in `src/pool.js` as an exported array of `{ tw, css }` pairs:
+All questions live in `src/lib/pool.js` as an exported array of `{ tw, css }` pairs:
 
 ```js
 { tw: "flex", css: "display: flex" }
@@ -65,6 +71,6 @@ For arbitrary value entries, match the format exactly as Tailwind outputs it:
 In `src/App.jsx`:
 
 ```js
-const TOTAL_Q = 20; // questions per round
-const TOTAL_TIME = 240; // seconds (4 minutes)
+const TOTAL_Q = 10; // questions per round
+const TOTAL_TIME = 120; // seconds (2 minutes)
 ```
