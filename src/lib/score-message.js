@@ -70,7 +70,7 @@ export function scoreMessage(correct) {
 		return pick([
 			"3/10. A foundation. A very small one.",
 			"Three correct. The other seven are just warming up.",
-			"You got 3. That's 30%. CSS curves don't exist, sorry.",
+			"You got 3. That's 30%. If you want to beef it up",
 			"3 out of 10. The docs miss you. Visit them sometime.",
 			"Progress! Probably. At least it's not 2.",
 			"3 right. 7 absolutely wrong.",
