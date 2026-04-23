@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const {POOL} = await import\\('./src/lib/pool.js'\\); const easy = POOL.filter\\(q=>q.level==='easy'\\); const normal = POOL.filter\\(q=>q.level==='normal'\\); const expert = POOL.filter\\(q=>q.level==='expert'\\); console.log\\('total:', POOL.length, 'easy:', easy.length, 'normal:', normal.length, 'expert:', expert.length\\);\" --input-type=module)",
+      "Bash(node --input-type=module)"
+    ]
+  }
+}

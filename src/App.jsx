@@ -3,7 +3,6 @@ import "./App.css";
 import { POOL } from "./lib/pool.js";
 import { scoreMessage } from "./lib/score-message.js";
 
-const TOTAL_Q = window.location.hostname === "localhost" ? 10 : 10;
 const TOTAL_TIME = 120;
 
 // ─── UTILS ────────────────────────────────────────────────────────────────────
@@ -80,6 +79,7 @@ function AdBanner() {
 export default function CSSWind() {
 	const [phase, setPhase] = useState("home"); // "home" | "quiz" | "results"
 	const [difficulty, setDifficulty] = useState("normal"); // "easy" | "normal" | "expert"
+	const [roundSize, setRoundSize] = useState(10); // 10 | 20
 	const [questions, setQuestions] = useState([]);
 	const [currIndex, setCurrIndex] = useState(0);
 	const [input, setInput] = useState("");
@@ -130,35 +130,38 @@ export default function CSSWind() {
 
 	function buildPool() {
 		if (difficulty === "easy") {
-			// guarantee at least 1 normal question, rest from easy
+			const normalCount = Math.max(1, Math.round(roundSize * 0.1));
 			const normalPool = shuffle(POOL.filter((q) => q.level === "normal"));
 			const easyPool = shuffle(POOL.filter((q) => q.level === "easy"));
 			return shuffle([
-				...normalPool.slice(0, 1),
-				...easyPool.slice(0, TOTAL_Q - 1),
+				...normalPool.slice(0, normalCount),
+				...easyPool.slice(0, roundSize - normalCount),
 			]);
 		}
 		if (difficulty === "normal") {
-			// guarantee at least 8 normal questions, rest from easy
+			const normalCount = Math.round(roundSize * 0.8);
 			const normalPool = shuffle(POOL.filter((q) => q.level === "normal"));
 			const easyPool = shuffle(POOL.filter((q) => q.level === "easy"));
-			const normalPick = normalPool.slice(0, 8);
-			const easyPick = easyPool.slice(0, TOTAL_Q - 8);
-			return shuffle([...normalPick, ...easyPick]);
+			return shuffle([
+				...normalPool.slice(0, normalCount),
+				...easyPool.slice(0, roundSize - normalCount),
+			]);
 		}
-		// expert: guarantee at least 5 expert questions, rest from any level
+		// expert: half expert, half from any level
+		const expertCount = Math.round(roundSize * 0.5);
 		const expertPool = shuffle(POOL.filter((q) => q.level === "expert"));
 		const otherPool = shuffle(POOL.filter((q) => q.level !== "expert"));
-		const expertPick = expertPool.slice(0, 5);
-		const otherPick = otherPool.slice(0, TOTAL_Q - 5);
-		return shuffle([...expertPick, ...otherPick]);
+		return shuffle([
+			...expertPool.slice(0, expertCount),
+			...otherPool.slice(0, roundSize - expertCount),
+		]);
 	}
 
 	function startGame() {
 		// Pick questions according to difficulty
 		const pool = buildPool();
 		const picked = shuffle(pool)
-			.slice(0, TOTAL_Q)
+			.slice(0, roundSize)
 			.map((q) => ({
 				...q,
 				dir: Math.random() < 0.5 ? "tw2css" : "css2tw",
@@ -206,7 +209,7 @@ export default function CSSWind() {
 		];
 		setResults(newResults);
 
-		if (currIndex + 1 >= TOTAL_Q) {
+		if (currIndex + 1 >= roundSize) {
 			endGame(newResults);
 		} else {
 			setCurrIndex(currIndex + 1);
@@ -320,7 +323,7 @@ export default function CSSWind() {
 											Each question shows either a Tailwind class or a CSS
 											property you type the other side from memory.
 										</p>
-										<p>10 questions · 2 minutes.</p>
+										<p>{roundSize} questions · 2 minutes.</p>
 									</div>
 
 									<button
@@ -338,6 +341,18 @@ export default function CSSWind() {
 												onClick={() => setDifficulty(lvl)}
 											>
 												{lvl}
+											</button>
+										))}
+									</div>
+
+									<div className="round-picker">
+										{[10, 15, 20].map((n) => (
+											<button
+												key={n}
+												className={`btn btn-level${roundSize === n ? " active" : ""}`}
+												onClick={() => setRoundSize(n)}
+											>
+												{n} questions
 											</button>
 										))}
 									</div>
@@ -484,7 +499,7 @@ export default function CSSWind() {
 									<div className="card">
 										<div className="q-meta">
 											<span className="q-count">
-												<strong>{currIndex + 1}</strong> / {TOTAL_Q}
+												<strong>{currIndex + 1}</strong> / {roundSize}
 											</span>
 											<span className="q-badge">
 												{isTW ? "tw → css" : "css → tw"}
@@ -552,7 +567,7 @@ export default function CSSWind() {
 												<div className="r-score-label">Score</div>
 												<span className="r-num">{finalScore}</span>
 											</div>
-											<div className="r-msg">{scoreMessage(correctCount)}</div>
+											<div className="r-msg">{scoreMessage(correctCount, roundSize)}</div>
 											<div className="r-level">Level: {difficulty}</div>
 										</div>
 
