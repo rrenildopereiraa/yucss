@@ -78,7 +78,7 @@ function AdBanner() {
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
 export default function CSSWind() {
 	const [phase, setPhase] = useState("home"); // "home" | "quiz" | "results"
-	const [difficulty, setDifficulty] = useState("normal"); // "easy" | "normal" | "expert"
+	const [difficulty, setDifficulty] = useState("medium"); // "easy" | "medium" | "expert"
 	const [roundSize, setRoundSize] = useState(10); // 10 | 20
 	const [questions, setQuestions] = useState([]);
 	const [currIndex, setCurrIndex] = useState(0);
@@ -138,7 +138,7 @@ export default function CSSWind() {
 				...easyPool.slice(0, roundSize - normalCount),
 			]);
 		}
-		if (difficulty === "normal") {
+		if (difficulty === "medium") {
 			const normalCount = Math.round(roundSize * 0.8);
 			const normalPool = shuffle(POOL.filter((q) => q.level === "normal"));
 			const easyPool = shuffle(POOL.filter((q) => q.level === "easy"));
@@ -334,7 +334,7 @@ export default function CSSWind() {
 									</button>
 
 									<div className="level-picker">
-										{["easy", "normal", "expert"].map((lvl) => (
+										{["easy", "medium", "expert"].map((lvl) => (
 											<button
 												key={lvl}
 												className={`btn btn-level${difficulty === lvl ? " active" : ""}`}
