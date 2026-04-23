@@ -78,8 +78,8 @@ function AdBanner() {
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
 export default function CSSWind() {
 	const [phase, setPhase] = useState("home"); // "home" | "quiz" | "results"
-	const [difficulty, setDifficulty] = useState("medium"); // "easy" | "medium" | "expert"
-	const [roundSize, setRoundSize] = useState(10); // 10 | 20
+	const [difficulty, setDifficulty] = useState("easy"); // "easy" | "medium" | "expert"
+	const [roundSize, setRoundSize] = useState(10); // 10 | 15 | 20
 	const [questions, setQuestions] = useState([]);
 	const [currIndex, setCurrIndex] = useState(0);
 	const [input, setInput] = useState("");
