@@ -137,21 +137,21 @@ export default function CSSWind() {
 
 	function buildPool() {
 		if (difficulty === "easy") {
-			const normalCount = Math.max(1, Math.round(roundSize * 0.1));
-			const normalPool = shuffle(POOL.filter((q) => q.level === "normal"));
+			const mediumCount = Math.max(1, Math.round(roundSize * 0.1));
+			const mediumPool = shuffle(POOL.filter((q) => q.level === "medium"));
 			const easyPool = shuffle(POOL.filter((q) => q.level === "easy"));
 			return shuffle([
-				...normalPool.slice(0, normalCount),
-				...easyPool.slice(0, roundSize - normalCount),
+				...mediumPool.slice(0, normalCount),
+				...easyPool.slice(0, roundSize - mediumCount),
 			]);
 		}
 		if (difficulty === "medium") {
-			const normalCount = Math.round(roundSize * 0.8);
-			const normalPool = shuffle(POOL.filter((q) => q.level === "normal"));
+			const mediumCount = Math.round(roundSize * 0.8);
+			const mediumPool = shuffle(POOL.filter((q) => q.level === "medium"));
 			const easyPool = shuffle(POOL.filter((q) => q.level === "easy"));
 			return shuffle([
-				...normalPool.slice(0, normalCount),
-				...easyPool.slice(0, roundSize - normalCount),
+				...mediumPool.slice(0, normalCount),
+				...easyPool.slice(0, roundSize - mediumCount),
 			]);
 		}
 		// expert: half expert, half from any level
