@@ -48,7 +48,7 @@ All questions live in `src/lib/pool.js` as an exported array of `{ tw, css }` pa
 - `tw` is the Tailwind class name
 - `css` is the full CSS declaration (property + value, no semicolon needed)
 
-Each round randomly assigns each question a direction — either Tailwind to CSS or CSS to Tailwind — so every pair covers both directions automatically.
+Direction (mixed, TW → CSS, or CSS → TW), question count (10, 15, 20), and difficulty (easy, medium, expert) are all chosen by the player before each round.
 
 Answer checking is forgiving: case, spaces around `:` and `/`, and trailing semicolons are all normalised before comparison.
 
@@ -66,11 +66,12 @@ For arbitrary value entries, match the format exactly as Tailwind outputs it:
 { tw: "w-[200px]", css: "width: 200px" },
 ```
 
-## Game constants
+## Game options
 
-In `src/App.jsx`:
+Configured by the player on the home screen:
 
-```js
-const TOTAL_Q = 10; // questions per round
-const TOTAL_TIME = 120; // seconds (2 minutes)
-```
+| Option | Values |
+| ------ | ------ |
+| Difficulty | easy, medium, expert |
+| Questions | 10 (1 min), 15 (2 min), 20 (3 min) |
+| Direction | mixed, TW → CSS, CSS → TW |

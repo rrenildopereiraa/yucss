@@ -3,7 +3,11 @@ import "./App.css";
 import { POOL } from "./lib/pool.js";
 import { scoreMessage } from "./lib/score-message.js";
 
-const TOTAL_TIME = 120;
+function timeForRound(n) {
+	if (n === 10) return 60;
+	if (n === 15) return 120;
+	return 180; // 20
+}
 
 // ─── UTILS ────────────────────────────────────────────────────────────────────
 
@@ -86,7 +90,9 @@ export default function CSSWind() {
 	const [input, setInput] = useState("");
 	const [inputState, setInputState] = useState("idle"); // "idle" | "correct" | "wrong"
 	const [hint, setHint] = useState("");
-	const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
+	const [totalTime, setTotalTime] = useState(timeForRound(10));
+	const [timeLeft, setTimeLeft] = useState(timeForRound(10));
+	const totalTimeRef = useRef(timeForRound(10));
 	const [results, setResults] = useState([]);
 	const [timeTaken, setTimeTaken] = useState(0);
 
@@ -173,7 +179,10 @@ export default function CSSWind() {
 		setInput("");
 		setInputState("idle");
 		setHint("");
-		setTimeLeft(TOTAL_TIME);
+		const t = timeForRound(roundSize);
+		totalTimeRef.current = t;
+		setTotalTime(t);
+		setTimeLeft(t);
 		setResults([]);
 		setTimeTaken(0);
 		setPhase("quiz");
@@ -185,12 +194,12 @@ export default function CSSWind() {
 				.slice(prev.length)
 				.map((q) => ({ ...q, status: "skipped", chosen: "" }));
 			const final = [...prev, ...skipped];
-			endGame(final, TOTAL_TIME);
+			endGame(final, totalTimeRef.current);
 			return final;
 		});
 	}
 
-	function endGame(final, elapsed = TOTAL_TIME - timeLeft) {
+	function endGame(final, elapsed = totalTimeRef.current - timeLeft) {
 		clearInterval(timerRef.current);
 		setTimeTaken(elapsed);
 		setResults(final);
@@ -257,13 +266,13 @@ export default function CSSWind() {
 
 	// ── Derived values for rendering ──────────────────────────────────────────
 
-	const timerPercent = (timeLeft / TOTAL_TIME) * 100;
-	const timerMod = timeLeft <= 30 ? "danger" : timeLeft <= 60 ? "warn" : "";
+	const timerPercent = (timeLeft / totalTime) * 100;
+	const timerMod = timerPercent <= 25 ? "danger" : timerPercent <= 50 ? "warn" : "";
 	const correctCount = results.filter((r) => r.status === "correct").length;
 	const wrongCount = results.filter(
 		(r) => r.status === "passed" || r.status === "wrong",
 	).length;
-	const finalScore = correctCount * 50 + Math.max(0, TOTAL_TIME - timeTaken);
+	const finalScore = correctCount * 50 + Math.max(0, totalTime - timeTaken);
 	const hintClass = `hint${inputState === "correct" ? " ok" : inputState === "wrong" ? " bad" : hint ? " pass" : ""}`;
 
 	const shareUrl = encodeURIComponent("https://www.csswind.com");
@@ -324,7 +333,7 @@ export default function CSSWind() {
 											Each question shows either a Tailwind class or a CSS
 											property you type the other side from memory.
 										</p>
-										<p>{roundSize} questions · 2 minutes.</p>
+										<p>{roundSize} questions · {roundSize === 10 ? "1 minute" : roundSize === 15 ? "2 minutes" : "3 minutes"}.</p>
 									</div>
 
 									<button
@@ -394,8 +403,8 @@ export default function CSSWind() {
 										<ul className="instr-list">
 											{[
 												[
-													"Mixed questions",
-													"each round randomly mixes Tailwind → CSS and CSS → Tailwind questions.",
+													"Choose your options",
+													"pick a difficulty, how many questions, and whether to go mixed, TW → CSS, or CSS → TW.",
 												],
 												[
 													"Submit with Enter",
