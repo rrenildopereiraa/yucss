@@ -5,8 +5,8 @@ import { scoreMessage } from "./lib/score-message.js";
 
 function timeForRound(n) {
 	if (n === 10) return 120;
-	if (n === 15) return 180;
-	return 240; // 20
+	if (n === 15) return 240;
+	return 360; // 20
 }
 
 // ─── UTILS ────────────────────────────────────────────────────────────────────
@@ -333,7 +333,7 @@ export default function CSSWind() {
 											Each question shows either a Tailwind class or a CSS
 											property you type the other side from memory.
 										</p>
-										<p>{roundSize} questions · {roundSize === 10 ? "2 minutes" : roundSize === 15 ? "3 minutes" : "4 minutes"}.</p>
+										<p>{roundSize} questions · {roundSize === 10 ? "2 minutes" : roundSize === 15 ? "4 minutes" : "6 minutes"}.</p>
 									</div>
 
 									<button
