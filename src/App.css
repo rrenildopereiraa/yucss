@@ -123,11 +123,6 @@ main {
 	font-size: 0.9rem;
 	color: var(--muted);
 	line-height: 1.7;
-	margin-bottom: 12px;
-}
-
-.hero p + p {
-	margin-bottom: 0;
 }
 
 .examples {
@@ -164,6 +159,15 @@ main {
 }
 .example-answer {
 	color: var(--text);
+}
+
+.round-summary {
+	color: #fff;
+	text-align: center;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 10px;
+	margin-bottom: 12px;
 }
 
 .btn-play {

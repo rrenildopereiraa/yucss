@@ -171,7 +171,12 @@ export default function CSSWind() {
 			.slice(0, roundSize)
 			.map((q) => ({
 				...q,
-				dir: direction === "mixed" ? (Math.random() < 0.5 ? "tw2css" : "css2tw") : direction,
+				dir:
+					direction === "mixed"
+						? Math.random() < 0.5
+							? "tw2css"
+							: "css2tw"
+						: direction,
 			}));
 		clearInterval(timerRef.current);
 		setQuestions(picked);
@@ -267,7 +272,8 @@ export default function CSSWind() {
 	// ── Derived values for rendering ──────────────────────────────────────────
 
 	const timerPercent = (timeLeft / totalTime) * 100;
-	const timerMod = timerPercent <= 25 ? "danger" : timerPercent <= 50 ? "warn" : "";
+	const timerMod =
+		timerPercent <= 25 ? "danger" : timerPercent <= 50 ? "warn" : "";
 	const correctCount = results.filter((r) => r.status === "correct").length;
 	const wrongCount = results.filter(
 		(r) => r.status === "passed" || r.status === "wrong",
@@ -333,7 +339,6 @@ export default function CSSWind() {
 											Each question shows either a Tailwind class or a CSS
 											property you type the other side from memory.
 										</p>
-										<p>{roundSize} questions · {roundSize === 10 ? "2 minutes" : roundSize === 15 ? "3 minutes" : "5 minutes"}.</p>
 									</div>
 
 									<button
@@ -462,7 +467,11 @@ export default function CSSWind() {
 										>
 											<i className="fa-brands fa-linkedin-in" />
 										</a>
-										<a className="share-btn" href={homeShareLinks.email} aria-label="Share via Email">
+										<a
+											className="share-btn"
+											href={homeShareLinks.email}
+											aria-label="Share via Email"
+										>
 											<i className="fa-solid fa-envelope" />
 										</a>
 									</div>
@@ -593,7 +602,9 @@ export default function CSSWind() {
 												<div className="r-score-label">Score</div>
 												<span className="r-num">{finalScore}</span>
 											</div>
-											<div className="r-msg">{scoreMessage(correctCount, roundSize)}</div>
+											<div className="r-msg">
+												{scoreMessage(correctCount, roundSize)}
+											</div>
 											<div className="r-level">Level: {difficulty}</div>
 										</div>
 
@@ -643,7 +654,11 @@ export default function CSSWind() {
 											>
 												<i className="fa-brands fa-linkedin-in" />
 											</a>
-											<a className="share-btn" href={shareLinks.email} aria-label="Share via Email">
+											<a
+												className="share-btn"
+												href={shareLinks.email}
+												aria-label="Share via Email"
+											>
 												<i className="fa-solid fa-envelope" />
 											</a>
 										</div>
