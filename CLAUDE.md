@@ -45,7 +45,7 @@ All questions live in `src/lib/pool.js` as an exported array of `{ tw, css }` pa
 { tw: "flex", css: "display: flex" }
 ```
 
-- `tw` is the Tailwind class name
+- `tw` is the Yumma CSS class name
 - `css` is the full CSS declaration (property + value, no semicolon needed)
 
 Direction (mixed, TW → CSS, or CSS → TW), question count (10, 15, 20), and difficulty (easy, medium, expert) are all chosen by the player before each round.
@@ -60,7 +60,7 @@ Answer checking is forgiving: case, spaces around `:` and `/`, and trailing semi
 { tw: "not-sr-only", css: "position: static" },
 ```
 
-For arbitrary value entries, match the format exactly as Tailwind outputs it:
+For arbitrary value entries, match the format exactly as Yumma CSS outputs it:
 
 ```js
 { tw: "w-[200px]", css: "width: 200px" },

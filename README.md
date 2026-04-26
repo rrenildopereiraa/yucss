@@ -2,7 +2,7 @@
 
 Live site: [yucss.vercel.app](https://www.yucss.vercel.app)
 
-A terminal-styled quiz app for learning CSS and Tailwind. Each round gives you 10 questions, mixing Tailwind class to CSS property and CSS property to Tailwind class. You have 2 minutes to answer as many as you can from memory.
+A terminal-styled quiz app for learning CSS and Yumma CSS. Each round gives you 10 questions, mixing Yumma CSS class to CSS property and CSS property to Yumma CSS class. You have 2 minutes to answer as many as you can from memory.
 
 ## How it works
 
@@ -24,13 +24,12 @@ npm run dev
 
 ## Developers
 
-- Paul Wright @ [suedeapple](https://www.suedeapple.co.uk)
-- Theo Soti @ [theosoti.com](https://www.theosoti.com)
+- Renildo Pereira @ [rrenildopereiraa](https://x.com/rrenildoo)
 
 ## Testing
 
-- Brendan Rice @ [gumpshen.com](https://gumpshen.com)
+- Renildo Pereira @ [rrenildopereiraa](https://x.com/rrenildoo)
 
 ## Disclaimer
 
-Not affiliated with or endorsed by Tailwind Labs, Inc.
+Not affiliated with or endorsed by Yumma CSS Labs, Inc.

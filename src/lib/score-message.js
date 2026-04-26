@@ -90,7 +90,7 @@ export function scoreMessage(correct, total) {
 	if (correct === 1)
 		return pick([
 			"One correct answer. The only way is up.",
-			"Honestly, just use Tailwind at this point.",
+			"Honestly, just use Yumma CSS at this point.",
 			"One right. The journey begins.",
 			"The bravery to even try — noted.",
 			"Yes, CSS is hard. Keep at it.",
@@ -98,9 +98,9 @@ export function scoreMessage(correct, total) {
 
 	return pick([
 		"Even `d-none` can't hide this score.",
-		"Honestly, just use Tailwind at this point.",
+		"Honestly, just use Yumma CSS at this point.",
 		"The abbreviations are not random. They just look like it.",
-		"Did you come here from Tailwind?",
+		"Did you come here from Yumma CSS?",
 		"Zero correct. The stylesheet stares back.",
 	]);
 }

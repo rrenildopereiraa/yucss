@@ -1,20 +1,20 @@
 # yucss
 
-> A fast-paced CSS and Tailwind CSS quiz. 10 questions, 2 minutes — type the CSS property or Tailwind class from memory.
+> A fast-paced CSS and Yumma CSS quiz. 10 questions, 2 minutes — type the CSS property or Yumma CSS class from memory.
 
-yucss tests frontend developer knowledge of Tailwind CSS utility classes and their underlying CSS declarations. Each round randomly assigns questions in both directions: Tailwind → CSS and CSS → Tailwind.
+yucss tests frontend developer knowledge of Yumma CSS utility classes and their underlying CSS declarations. Each round randomly assigns questions in both directions: Yumma CSS → CSS and CSS → Yumma CSS.
 
 ## How it works
 
 - 10 questions per round, 120 second timer
 - Three difficulty levels: easy, normal, expert
-- Questions are drawn from a curated pool of Tailwind/CSS pairs
+- Questions are drawn from a curated pool of Yumma CSS/CSS pairs
 - Answer checking is forgiving: case, whitespace around colons, and trailing semicolons are all normalised
 - Score = (correct answers × 50) + time bonus (seconds remaining)
 
 ## Question format
 
-Each question is a pair: a Tailwind utility class and its CSS declaration.
+Each question is a pair: a Yumma CSS utility class and its CSS declaration.
 
 Examples:
 - tw: "flex" → css: "display: flex"
