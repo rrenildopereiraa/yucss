@@ -3,8 +3,6 @@ import { coreUtils } from "@yummacss/core";
 const MEDIUM_PREFIXES = new Set([
   "ws",   // ws-nw not ws-n
   "ro",   // ro- not r-
-  "bs-o", // bs-o- not bs-
-  "bs-i", // bs-i- not bs-
   "tdu",  // tdu- not td-
   "cl",   // cl- not c-
   "tr",   // translate
@@ -32,6 +30,7 @@ const EXPERT_PREFIXES = new Set([
   "bber", "bisr", "bier",            // border logical
   "besr", "beer", "bbsr",            // border logical
   "bssr", "bser",                    // border logical
+  "bs-o", "bs-i",                    // box-shadow (expert: framework familiarity required)
 ]);
 
 // tor-bl, tor-br, tor-tl, tor-tr are expert — LightningCSS optimized them
@@ -68,15 +67,17 @@ function getLevel(prefix, classname) {
 
 const utils = coreUtils();
 
-export const POOL = Object.entries(utils).flatMap(([, utility]) =>
-  Object.entries(utility.values)
-    .filter(([key, value]) => !isExcluded(key, value))
-    .map(([key, value]) => {
-      const classname = `${utility.prefix}-${key}`;
-      return {
-        yu: classname,
-        css: `${utility.properties[0]}: ${value}`,
-        level: getLevel(utility.prefix, classname),
-      };
-    })
-);
+export const POOL = Object.entries(utils)
+  .filter(([, utility]) => utility.properties.length === 1)
+  .flatMap(([, utility]) =>
+    Object.entries(utility.values)
+      .filter(([key, value]) => !isExcluded(key, value))
+      .map(([key, value]) => {
+        const classname = `${utility.prefix}-${key}`;
+        return {
+          yu: classname,
+          css: `${utility.properties[0]}: ${value}`,
+          level: getLevel(utility.prefix, classname),
+        };
+      })
+  );

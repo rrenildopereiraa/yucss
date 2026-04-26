@@ -366,8 +366,8 @@ export default function YuCSS() {
 									<div className="mode-picker">
 										{[
 											{ value: "mixed", label: "Mixed" },
-											{ value: "yu2css", label: "YU → CSS" },
-											{ value: "css2yu", label: "CSS → YU" },
+											{ value: "yu2css", label: "Yumma CSS → CSS" },
+											{ value: "css2yu", label: "CSS → Yumma CSS" },
 										].map(({ value, label }) => (
 											<button
 												key={value}
@@ -381,13 +381,13 @@ export default function YuCSS() {
 
 									<div className="examples">
 										<div className="example-row">
-											<span className="example-dir">YU → CSS</span>
+											<span className="example-dir">Yumma CSS → CSS</span>
 											<span className="example-prompt">d-f</span>
 											<span className="example-arrow">→</span>
 											<span className="example-answer">display: flex</span>
 										</div>
 										<div className="example-row">
-											<span className="example-dir">CSS → YU</span>
+											<span className="example-dir">CSS → Yumma CSS</span>
 											<span className="example-prompt">width: 100%</span>
 											<span className="example-arrow">→</span>
 											<span className="example-answer">w-full</span>
@@ -400,7 +400,7 @@ export default function YuCSS() {
 											{[
 												[
 													"Choose your options",
-													"pick a difficulty, how many questions, and whether to go mixed, YU → CSS, or CSS → YU.",
+													"pick a difficulty, how many questions, and whether to go mixed, Yumma CSS → CSS, or CSS → Yumma CSS.",
 												],
 												[
 													"Submit with Enter",
@@ -689,8 +689,8 @@ export default function YuCSS() {
 						<p>Built with and for <a href="https://yummacss.com" target="_blank" rel="noreferrer">Yumma CSS</a>.</p>
 						<p>
 							Forked from{" "}
-							<a href="https://www.csswind.com" target="_blank" rel="noreferrer">
-								CSSWind
+							<a href="https://www.yucss.vercel.app" target="_blank" rel="noreferrer">
+								yucss
 							</a>{" "}
 							by Paul Wright &amp; Theo Soti.
 						</p>

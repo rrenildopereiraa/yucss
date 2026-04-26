@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.csswind.com/sitemap.xml
+Sitemap: https://www.yucss.vercel.app/sitemap.xml

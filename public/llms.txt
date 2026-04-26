@@ -1,8 +1,8 @@
-# CSSwind
+# yucss
 
 > A fast-paced CSS and Tailwind CSS quiz. 10 questions, 2 minutes — type the CSS property or Tailwind class from memory.
 
-CSSwind tests frontend developer knowledge of Tailwind CSS utility classes and their underlying CSS declarations. Each round randomly assigns questions in both directions: Tailwind → CSS and CSS → Tailwind.
+yucss tests frontend developer knowledge of Tailwind CSS utility classes and their underlying CSS declarations. Each round randomly assigns questions in both directions: Tailwind → CSS and CSS → Tailwind.
 
 ## How it works
 
@@ -22,6 +22,6 @@ Examples:
 
 ## Site
 
-- URL: https://www.csswind.com
+- URL: https://www.yucss.vercel.app
 - Built with React 19 and Vite
 - No framework, no router, no state library

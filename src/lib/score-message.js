@@ -8,10 +8,11 @@ export function scoreMessage(correct, total) {
 	if (correct === total)
 		return pick([
 			"Perfeito!",
-			"ACE!",
+			"Are you cheating? Because this is suspicious.",
 			"Did you swallow the entire Yumma CSS docs?",
 			"You don't need IntelliSense. You ARE IntelliSense.",
 			"Renildo wants to hire you!",
+			"Renildo? Is that you?",
 		]);
 
 	if (pct >= 0.9)

@@ -1,4 +1,4 @@
-# csswind — project guide
+# yucss — project guide
 
 ## Stack
 

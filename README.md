@@ -1,6 +1,6 @@
-# csswind
+# yucss
 
-Live site: [csswind.com](https://www.csswind.com)
+Live site: [yucss.vercel.app](https://www.yucss.vercel.app)
 
 A terminal-styled quiz app for learning CSS and Tailwind. Each round gives you 10 questions, mixing Tailwind class to CSS property and CSS property to Tailwind class. You have 2 minutes to answer as many as you can from memory.
 
