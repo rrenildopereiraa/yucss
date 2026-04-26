@@ -35,8 +35,6 @@ function checkAnswer(input, expected) {
 	const n = normalize(input);
 	const e = normalize(expected);
 	if (n === e) return true;
-	// treat "0" and "0px" (or any "0<unit>") as equivalent
-	const zeroUnit = /^(.*?)\b0px\b(.*)$/;
 	return n === e.replace(/\b0px\b/g, "0") || e === n.replace(/\b0px\b/g, "0");
 }
 
@@ -80,11 +78,11 @@ function AdBanner() {
 }
 
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
-export default function CSSWind() {
+export default function YuCSS() {
 	const [phase, setPhase] = useState("home"); // "home" | "quiz" | "results"
-	const [difficulty, setDifficulty] = useState("easy"); // "easy" | "medium" | "expert"
-	const [roundSize, setRoundSize] = useState(10); // 10 | 15 | 20
-	const [direction, setDirection] = useState("mixed"); // "mixed" | "tw2css" | "css2tw"
+	const [difficulty, setDifficulty] = useState("easy");
+	const [roundSize, setRoundSize] = useState(10);
+	const [direction, setDirection] = useState("mixed"); // "mixed" | "yu2css" | "css2yu"
 	const [questions, setQuestions] = useState([]);
 	const [currIndex, setCurrIndex] = useState(0);
 	const [input, setInput] = useState("");
@@ -100,22 +98,19 @@ export default function CSSWind() {
 	const timerRef = useRef(null);
 
 	const currentQuestion = questions[currIndex];
-	// Each question has its own randomly assigned direction
-	const isTW = currentQuestion?.dir === "tw2css";
+	const isYU = currentQuestion?.dir === "yu2css";
 	const correctAnswer = currentQuestion
-		? isTW
+		? isYU
 			? currentQuestion.css
-			: currentQuestion.tw
+			: currentQuestion.yu
 		: "";
 
-	// Focus the input on each new question
 	useEffect(() => {
 		if (phase === "quiz" && inputRef.current) {
 			inputRef.current.focus();
 		}
 	}, [phase, currIndex]);
 
-	// Countdown timer
 	useEffect(() => {
 		if (phase !== "quiz") return;
 
@@ -165,7 +160,6 @@ export default function CSSWind() {
 	}
 
 	function startGame() {
-		// Pick questions according to difficulty
 		const pool = buildPool();
 		const picked = shuffle(pool)
 			.slice(0, roundSize)
@@ -174,8 +168,8 @@ export default function CSSWind() {
 				dir:
 					direction === "mixed"
 						? Math.random() < 0.5
-							? "tw2css"
-							: "css2tw"
+							? "yu2css"
+							: "css2yu"
 						: direction,
 			}));
 		clearInterval(timerRef.current);
@@ -216,7 +210,6 @@ export default function CSSWind() {
 		setPhase("home");
 	}
 
-	// Saves the current result then moves to the next question (or ends the game)
 	function recordAndAdvance(status) {
 		const newResults = [
 			...results,
@@ -269,7 +262,7 @@ export default function CSSWind() {
 		if (inputState === "wrong") setInputState("idle");
 	}
 
-	// ── Derived values for rendering ──────────────────────────────────────────
+	// ── Derived values ─────────────────────────────────────────────────────────
 
 	const timerPercent = (timeLeft / totalTime) * 100;
 	const timerMod =
@@ -281,15 +274,13 @@ export default function CSSWind() {
 	const finalScore = correctCount * 50 + Math.max(0, totalTime - timeTaken);
 	const hintClass = `hint${inputState === "correct" ? " ok" : inputState === "wrong" ? " bad" : hint ? " pass" : ""}`;
 
-	const shareUrl = encodeURIComponent("https://www.csswind.com");
+	const shareUrl = encodeURIComponent("https://www.yucss.com");
 	const homeShareText = encodeURIComponent(
-		`CSSwind — the CSS and Tailwind quiz. Test your Frontend knowledge!`,
+		`yucss — the Yumma CSS quiz. Test your CSS knowledge!`,
 	);
-	const homeEmailSubject = encodeURIComponent(
-		`CSSwind — the CSS and Tailwind quiz`,
-	);
+	const homeEmailSubject = encodeURIComponent(`yucss — the Yumma CSS quiz`);
 	const homeEmailBody = encodeURIComponent(
-		`Hey, check out CSSwind — a quiz that tests your CSS and Tailwind knowledge!\n\nhttps://www.csswind.com`,
+		`Hey, check out yucss — a quiz that tests your Yumma CSS and CSS knowledge!\n\nhttps://www.yucss.com`,
 	);
 	const homeShareLinks = {
 		x: `https://twitter.com/intent/tweet?text=${homeShareText}&url=${shareUrl}`,
@@ -298,13 +289,13 @@ export default function CSSWind() {
 		email: `mailto:?subject=${homeEmailSubject}&body=${homeEmailBody}`,
 	};
 	const shareText = encodeURIComponent(
-		`I scored ${finalScore} on CSSwind (${difficulty} mode) in ${timeTaken}s — the CSS and Tailwind quiz. Can you beat me?`,
+		`I scored ${finalScore} on yucss (${difficulty} mode) in ${timeTaken}s — the Yumma CSS quiz. Can you beat me?`,
 	);
 	const emailSubject = encodeURIComponent(
-		`I scored ${finalScore} on CSSwind — can you beat me?`,
+		`I scored ${finalScore} on yucss — can you beat me?`,
 	);
 	const emailBody = encodeURIComponent(
-		`I just scored ${finalScore} on CSSwind (${difficulty} mode) in ${timeTaken} seconds — the CSS and Tailwind quiz. Can you beat me?\n\nhttps://www.csswind.com`,
+		`I just scored ${finalScore} on yucss (${difficulty} mode) in ${timeTaken} seconds — the Yumma CSS quiz. Can you beat me?\n\nhttps://www.yucss.com`,
 	);
 	const shareLinks = {
 		x: `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`,
@@ -322,7 +313,7 @@ export default function CSSWind() {
 					<header className="hdr">
 						<span className="logo" onClick={goHome}>
 							<img src="/logo.svg" alt="" className="logo-img" />
-							<span className="logo-accent">CSS</span>wind
+							<span className="logo-accent">yu</span>css
 						</span>
 					</header>
 
@@ -333,11 +324,11 @@ export default function CSSWind() {
 								<section className="home-section">
 									<div className="hero">
 										<h1>
-											Know your <em>Tailwind</em>?
+											Know your <em>Yumma CSS</em>?
 										</h1>
 										<p>
-											Each question shows either a Tailwind class or a CSS
-											property you type the other side from memory.
+											Each question shows either a Yumma CSS class or a CSS
+											property — you type the other side from memory.
 										</p>
 									</div>
 
@@ -375,8 +366,8 @@ export default function CSSWind() {
 									<div className="mode-picker">
 										{[
 											{ value: "mixed", label: "Mixed" },
-											{ value: "tw2css", label: "TW → CSS" },
-											{ value: "css2tw", label: "CSS → TW" },
+											{ value: "yu2css", label: "YU → CSS" },
+											{ value: "css2yu", label: "CSS → YU" },
 										].map(({ value, label }) => (
 											<button
 												key={value}
@@ -390,13 +381,13 @@ export default function CSSWind() {
 
 									<div className="examples">
 										<div className="example-row">
-											<span className="example-dir">TW → CSS</span>
-											<span className="example-prompt">grid</span>
+											<span className="example-dir">YU → CSS</span>
+											<span className="example-prompt">d-f</span>
 											<span className="example-arrow">→</span>
-											<span className="example-answer">display: grid</span>
+											<span className="example-answer">display: flex</span>
 										</div>
 										<div className="example-row">
-											<span className="example-dir">CSS → TW</span>
+											<span className="example-dir">CSS → YU</span>
 											<span className="example-prompt">width: 100%</span>
 											<span className="example-arrow">→</span>
 											<span className="example-answer">w-full</span>
@@ -409,7 +400,7 @@ export default function CSSWind() {
 											{[
 												[
 													"Choose your options",
-													"pick a difficulty, how many questions, and whether to go mixed, TW → CSS, or CSS → TW.",
+													"pick a difficulty, how many questions, and whether to go mixed, YU → CSS, or CSS → YU.",
 												],
 												[
 													"Submit with Enter",
@@ -424,8 +415,8 @@ export default function CSSWind() {
 													"capitalisation, spaces around : and trailing semicolons are all ignored.",
 												],
 												[
-													"Tailwind v3 CSS values",
-													"Uses fixed values like 1rem rather than Tailwind v4's calc(var(--spacing) * 4).",
+													"Yumma CSS abbreviations",
+													"classes use short prefixes like d- for display, p- for padding, ai- for align-items.",
 												],
 											].map(([bold, rest]) => (
 												<li key={bold} className="instr-item">
@@ -478,18 +469,18 @@ export default function CSSWind() {
 
 									<div className="book-promo">
 										<span className="book-promo-label">
-											Recommended reading
+											Learn Yumma CSS
 										</span>
 										<a
 											className="book-promo-link"
-											href="https://theosoti.com/you-dont-need-js/?utm_source=csswind&utm_medium=referral&utm_campaign=home"
+											href="https://yummacss.com/docs"
 											target="_blank"
 											rel="noreferrer"
 										>
 											<span className="book-title">
-												You Don&rsquo;t Need JS
+												Yumma CSS Docs
 											</span>
-											<span className="book-author">by Theo Soti</span>
+											<span className="book-author">yummacss.com</span>
 										</a>
 									</div>
 								</section>
@@ -537,21 +528,21 @@ export default function CSSWind() {
 												<strong>{currIndex + 1}</strong> / {roundSize}
 											</span>
 											<span className="q-badge">
-												{isTW ? "tw → css" : "css → tw"}
+												{isYU ? "yu → css" : "css → yu"}
 											</span>
 										</div>
 
 										<div className="q-label">
-											{isTW ? "Tailwind class" : "CSS property"}
+											{isYU ? "Yumma CSS class" : "CSS property"}
 										</div>
 										<div className="q-prompt">
-											{isTW ? currentQuestion.tw : currentQuestion.css}
+											{isYU ? currentQuestion.yu : currentQuestion.css}
 										</div>
 
 										<div className="a-label">
-											{isTW
+											{isYU
 												? "Type the CSS property"
-												: "Type the Tailwind class"}
+												: "Type the Yumma CSS class"}
 										</div>
 										<input
 											ref={inputRef}
@@ -559,7 +550,7 @@ export default function CSSWind() {
 											value={input}
 											onChange={handleInputChange}
 											onKeyDown={handleKeyDown}
-											placeholder={isTW ? "e.g. display: flex" : "e.g. flex"}
+											placeholder={isYU ? "e.g. display: flex" : "e.g. d-f"}
 											disabled={inputState === "correct"}
 											spellCheck={false}
 											autoComplete="off"
@@ -665,18 +656,18 @@ export default function CSSWind() {
 
 										<div className="book-promo">
 											<span className="book-promo-label">
-												Recommended reading
+												Learn Yumma CSS
 											</span>
 											<a
 												className="book-promo-link"
-												href="https://theosoti.com/you-dont-need-js/?utm_source=csswind&utm_medium=referral&utm_campaign=results"
+												href="https://yummacss.com/docs"
 												target="_blank"
 												rel="noreferrer"
 											>
 												<span className="book-title">
-													You Don&rsquo;t Need JS
+													Yumma CSS Docs
 												</span>
-												<span className="book-author">by Theo Soti</span>
+												<span className="book-author">yummacss.com</span>
 											</a>
 										</div>
 
@@ -695,20 +686,13 @@ export default function CSSWind() {
 						)}
 					</main>
 					<footer className="footer">
-						<p>Not affiliated or endorsed by Tailwind Labs, Inc.</p>
+						<p>Built with and for <a href="https://yummacss.com" target="_blank" rel="noreferrer">Yumma CSS</a>.</p>
 						<p>
-							© {new Date().getFullYear()}{" "}
-							<a href="http://www.suedeapple.co.uk" target="_blank">
-								suedespple
+							Forked from{" "}
+							<a href="https://www.csswind.com" target="_blank" rel="noreferrer">
+								CSSWind
 							</a>{" "}
-							|{" "}
-							<a
-								href="https://github.com/suedeapple/csswind"
-								target="_blank"
-								rel="noreferrer"
-							>
-								GitHub{" "}
-							</a>
+							by Paul Wright &amp; Theo Soti.
 						</p>
 					</footer>
 				</div>

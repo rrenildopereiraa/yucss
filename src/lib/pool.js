@@ -1,578 +1,82 @@
-export const POOL = [
-	// Display
-	{ tw: "flex", css: "display: flex", level: "easy" },
-	{ tw: "grid", css: "display: grid", level: "easy" },
-	{ tw: "hidden", css: "display: none", level: "easy" },
-	{ tw: "block", css: "display: block", level: "easy" },
-	{ tw: "inline", css: "display: inline", level: "easy" },
-	{ tw: "inline-flex", css: "display: inline-flex", level: "easy" },
-	{ tw: "inline-block", css: "display: inline-block", level: "easy" },
-	{ tw: "contents", css: "display: contents", level: "medium" },
-	{ tw: "flow-root", css: "display: flow-root", level: "medium" },
-	// Position
-	{ tw: "absolute", css: "position: absolute", level: "easy" },
-	{ tw: "relative", css: "position: relative", level: "easy" },
-	{ tw: "fixed", css: "position: fixed", level: "easy" },
-	{ tw: "sticky", css: "position: sticky", level: "easy" },
-	{ tw: "static", css: "position: static", level: "easy" },
-	{ tw: "inset-0", css: "inset: 0px", level: "easy" },
-	{ tw: "top-[50%]", css: "top: 50%", level: "medium" },
-	{ tw: "bottom-[50%]", css: "bottom: 50%", level: "medium" },
-	{ tw: "bottom-[20px]", css: "bottom: 20px", level: "medium" },
-	{ tw: "left-[1rem]", css: "left: 1rem", level: "medium" },
-	{ tw: "right-[-1rem]", css: "right: -1rem", level: "medium" },
-	// Sizing - Width
-	{ tw: "w-full", css: "width: 100%", level: "easy" },
-	{ tw: "w-screen", css: "width: 100vw", level: "easy" },
-	{ tw: "w-auto", css: "width: auto", level: "easy" },
-	{ tw: "w-fit", css: "width: fit-content", level: "expert" },
-	{ tw: "w-min", css: "width: min-content", level: "expert" },
-	{ tw: "w-max", css: "width: max-content", level: "expert" },
-	{ tw: "w-[200px]", css: "width: 200px", level: "medium" },
-	{ tw: "w-[50%]", css: "width: 50%", level: "medium" },
-	{ tw: "w-[320px]", css: "width: 320px", level: "medium" },
-	{
-		tw: "w-[calc(100%-2rem)]",
-		css: "width: calc(100% - 2rem)",
-		level: "expert",
-	},
-	{ tw: "min-w-0", css: "min-width: 0px", level: "expert" },
-	{ tw: "min-w-full", css: "min-width: 100%", level: "expert" },
-	{ tw: "min-w-[200px]", css: "min-width: 200px", level: "expert" },
-	{ tw: "max-w-none", css: "max-width: none", level: "expert" },
-	{ tw: "max-w-full", css: "max-width: 100%", level: "expert" },
-	{ tw: "max-w-[600px]", css: "max-width: 600px", level: "expert" },
-	// Sizing - Height
-	{ tw: "h-full", css: "height: 100%", level: "easy" },
-	{ tw: "h-screen", css: "height: 100vh", level: "easy" },
-	{ tw: "h-auto", css: "height: auto", level: "easy" },
-	{ tw: "h-fit", css: "height: fit-content", level: "expert" },
-	{ tw: "h-min", css: "height: min-content", level: "expert" },
-	{ tw: "h-max", css: "height: max-content", level: "expert" },
-	{ tw: "h-[200px]", css: "height: 200px", level: "medium" },
-	{ tw: "h-[100px]", css: "height: 100px", level: "medium" },
-	{ tw: "h-[50vh]", css: "height: 50vh", level: "medium" },
-	{ tw: "h-[100dvh]", css: "height: 100dvh", level: "medium" },
-	{ tw: "h-[3rem]", css: "height: 3rem", level: "medium" },
-	{ tw: "min-h-0", css: "min-height: 0px", level: "expert" },
-	{ tw: "min-h-full", css: "min-height: 100%", level: "expert" },
-	{ tw: "min-h-screen", css: "min-height: 100vh", level: "expert" },
-	{ tw: "min-h-[300px]", css: "min-height: 300px", level: "expert" },
-	{ tw: "max-h-[80vh]", css: "max-height: 80vh", level: "expert" },
-	// Aspect ratio
-	{ tw: "aspect-auto", css: "aspect-ratio: auto", level: "expert" },
-	{ tw: "aspect-square", css: "aspect-ratio: 1 / 1", level: "medium" },
-	{ tw: "aspect-video", css: "aspect-ratio: 16 / 9", level: "expert" },
-	{ tw: "aspect-[4/3]", css: "aspect-ratio: 4 / 3", level: "expert" },
-	{ tw: "aspect-[21/9]", css: "aspect-ratio: 21 / 9", level: "expert" },
-	// Padding
-	{ tw: "p-0", css: "padding: 0px", level: "easy" },
-	{ tw: "p-1", css: "padding: 0.25rem", level: "medium" },
-	{ tw: "p-2", css: "padding: 0.5rem", level: "medium" },
-	{ tw: "p-4", css: "padding: 1rem", level: "medium" },
-	{ tw: "pt-4", css: "padding-top: 1rem", level: "medium" },
-	{ tw: "pb-4", css: "padding-bottom: 1rem", level: "medium" },
-	{ tw: "pl-4", css: "padding-left: 1rem", level: "expert" },
-	{ tw: "pr-4", css: "padding-right: 1rem", level: "expert" },
-	{ tw: "p-[5px]", css: "padding: 5px", level: "medium" },
-	{ tw: "p-[10px]", css: "padding: 10px", level: "medium" },
-	// Margin
-	{ tw: "m-0", css: "margin: 0px", level: "easy" },
-	{ tw: "m-1", css: "margin: 0.25rem", level: "medium" },
-	{ tw: "m-2", css: "margin: 0.5rem", level: "medium" },
-	{ tw: "m-4", css: "margin: 1rem", level: "medium" },
-	{ tw: "m-auto", css: "margin: auto", level: "medium" },
-	{ tw: "mt-4", css: "margin-top: 1rem", level: "medium" },
-	{ tw: "mb-4", css: "margin-bottom: 1rem", level: "medium" },
-	{ tw: "ml-auto", css: "margin-left: auto", level: "expert" },
-	{ tw: "mr-auto", css: "margin-right: auto", level: "expert" },
-	{ tw: "m-[10px]", css: "margin: 10px", level: "medium" },
-	{ tw: "mt-[30px]", css: "margin-top: 30px", level: "medium" },
-	// Font size
-	{ tw: "text-xs", css: "font-size: 0.75rem", level: "expert" },
-	{ tw: "text-sm", css: "font-size: 0.875rem", level: "expert" },
-	{ tw: "text-base", css: "font-size: 1rem", level: "medium" },
-	{ tw: "text-lg", css: "font-size: 1.125rem", level: "expert" },
-	{ tw: "text-xl", css: "font-size: 1.25rem", level: "expert" },
-	{ tw: "text-2xl", css: "font-size: 1.5rem", level: "expert" },
-	{ tw: "text-4xl", css: "font-size: 2.25rem", level: "expert" },
-	{ tw: "text-[14px]", css: "font-size: 14px", level: "expert" },
-	{ tw: "text-[1.25rem]", css: "font-size: 1.25rem", level: "expert" },
-	// Font weight
-	{ tw: "font-thin", css: "font-weight: 100", level: "medium" },
-	{ tw: "font-light", css: "font-weight: 300", level: "medium" },
-	{ tw: "font-normal", css: "font-weight: 400", level: "easy" },
-	{ tw: "font-medium", css: "font-weight: 500", level: "easy" },
-	{ tw: "font-semibold", css: "font-weight: 600", level: "medium" },
-	{ tw: "font-bold", css: "font-weight: 700", level: "easy" },
-	{ tw: "font-extrabold", css: "font-weight: 800", level: "medium" },
-	{ tw: "font-black", css: "font-weight: 900", level: "expert" },
-	// Font style
-	{ tw: "italic", css: "font-style: italic", level: "easy" },
-	{ tw: "not-italic", css: "font-style: normal", level: "medium" },
-	// Text align
-	{ tw: "text-center", css: "text-align: center", level: "easy" },
-	{ tw: "text-right", css: "text-align: right", level: "easy" },
-	{ tw: "text-left", css: "text-align: left", level: "easy" },
-	{ tw: "text-justify", css: "text-align: justify", level: "medium" },
-	{ tw: "text-start", css: "text-align: start", level: "medium" },
-	{ tw: "text-end", css: "text-align: end", level: "medium" },
-	// Text transform
-	{ tw: "uppercase", css: "text-transform: uppercase", level: "easy" },
-	{ tw: "lowercase", css: "text-transform: lowercase", level: "easy" },
-	{ tw: "capitalize", css: "text-transform: capitalize", level: "easy" },
-	{ tw: "normal-case", css: "text-transform: none", level: "medium" },
-	// Text decoration
-	{ tw: "underline", css: "text-decoration-line: underline", level: "medium" },
-	{ tw: "overline", css: "text-decoration-line: overline", level: "medium" },
-	{
-		tw: "line-through",
-		css: "text-decoration-line: line-through",
-		level: "medium",
-	},
-	{ tw: "no-underline", css: "text-decoration-line: none", level: "medium" },
-	// Text overflow
-	{ tw: "text-ellipsis", css: "text-overflow: ellipsis", level: "expert" },
-	{ tw: "text-clip", css: "text-overflow: clip", level: "expert" },
-	// Line height
-	{ tw: "leading-none", css: "line-height: 1", level: "expert" },
-	{ tw: "leading-tight", css: "line-height: 1.25", level: "expert" },
-	{ tw: "leading-snug", css: "line-height: 1.375", level: "expert" },
-	{ tw: "leading-normal", css: "line-height: 1.5", level: "expert" },
-	{ tw: "leading-relaxed", css: "line-height: 1.625", level: "expert" },
-	{ tw: "leading-loose", css: "line-height: 2", level: "expert" },
-	{ tw: "leading-[1.8]", css: "line-height: 1.8", level: "expert" },
-	{ tw: "leading-[2.5rem]", css: "line-height: 2.5rem", level: "expert" },
-	// Letter spacing
-	{ tw: "tracking-tighter", css: "letter-spacing: -0.05em", level: "expert" },
-	{ tw: "tracking-tight", css: "letter-spacing: -0.025em", level: "expert" },
-	{ tw: "tracking-normal", css: "letter-spacing: 0em", level: "expert" },
-	{ tw: "tracking-wide", css: "letter-spacing: 0.025em", level: "expert" },
-	{ tw: "tracking-wider", css: "letter-spacing: 0.05em", level: "expert" },
-	{ tw: "tracking-widest", css: "letter-spacing: 0.1em", level: "expert" },
-	// White space
-	{ tw: "whitespace-normal", css: "white-space: normal", level: "medium" },
-	{ tw: "whitespace-nowrap", css: "white-space: nowrap", level: "medium" },
-	{ tw: "whitespace-pre", css: "white-space: pre", level: "medium" },
-	{ tw: "whitespace-pre-line", css: "white-space: pre-line", level: "expert" },
-	{ tw: "whitespace-pre-wrap", css: "white-space: pre-wrap", level: "expert" },
-	// Word break
-	{ tw: "break-words", css: "overflow-wrap: break-word", level: "expert" },
-	{ tw: "break-all", css: "word-break: break-all", level: "expert" },
-	{ tw: "break-keep", css: "word-break: keep-all", level: "expert" },
-	// Flexbox - direction
-	{ tw: "flex-row", css: "flex-direction: row", level: "medium" },
-	{ tw: "flex-col", css: "flex-direction: column", level: "medium" },
-	{
-		tw: "flex-row-reverse",
-		css: "flex-direction: row-reverse",
-		level: "expert",
-	},
-	{
-		tw: "flex-col-reverse",
-		css: "flex-direction: column-reverse",
-		level: "expert",
-	},
-	// Flexbox - wrap
-	{ tw: "flex-wrap", css: "flex-wrap: wrap", level: "easy" },
-	{ tw: "flex-wrap-reverse", css: "flex-wrap: wrap-reverse", level: "medium" },
-	{ tw: "flex-nowrap", css: "flex-wrap: nowrap", level: "medium" },
-	// Flexbox - grow / shrink
-	{ tw: "grow", css: "flex-grow: 1", level: "medium" },
-	{ tw: "grow-0", css: "flex-grow: 0", level: "expert" },
-	{ tw: "shrink", css: "flex-shrink: 1", level: "medium" },
-	{ tw: "shrink-0", css: "flex-shrink: 0", level: "expert" },
-	// Flexbox - shorthand
-	{ tw: "flex-1", css: "flex: 1 1 0%", level: "expert" },
-	{ tw: "flex-auto", css: "flex: 1 1 auto", level: "expert" },
-	{ tw: "flex-none", css: "flex: none", level: "expert" },
-	{ tw: "flex-initial", css: "flex: 0 1 auto", level: "expert" },
-	// Align items
-	{ tw: "items-start", css: "align-items: flex-start", level: "medium" },
-	{ tw: "items-end", css: "align-items: flex-end", level: "medium" },
-	{ tw: "items-center", css: "align-items: center", level: "medium" },
-	{ tw: "items-baseline", css: "align-items: baseline", level: "expert" },
-	{ tw: "items-stretch", css: "align-items: stretch", level: "medium" },
-	// Justify content
-	{ tw: "justify-start", css: "justify-content: flex-start", level: "medium" },
-	{ tw: "justify-end", css: "justify-content: flex-end", level: "medium" },
-	{ tw: "justify-center", css: "justify-content: center", level: "medium" },
-	{
-		tw: "justify-between",
-		css: "justify-content: space-between",
-		level: "medium",
-	},
-	{
-		tw: "justify-around",
-		css: "justify-content: space-around",
-		level: "medium",
-	},
-	{
-		tw: "justify-evenly",
-		css: "justify-content: space-evenly",
-		level: "medium",
-	},
-	// Align self
-	{ tw: "self-start", css: "align-self: flex-start", level: "medium" },
-	{ tw: "self-end", css: "align-self: flex-end", level: "medium" },
-	{ tw: "self-center", css: "align-self: center", level: "medium" },
-	{ tw: "self-stretch", css: "align-self: stretch", level: "medium" },
-	{ tw: "self-baseline", css: "align-self: baseline", level: "expert" },
-	{ tw: "self-auto", css: "align-self: auto", level: "expert" },
-	// Place
-	{ tw: "place-items-center", css: "place-items: center", level: "expert" },
-	{ tw: "place-content-center", css: "place-content: center", level: "expert" },
-	// Gap
-	{ tw: "gap-1", css: "gap: 0.25rem", level: "expert" },
-	{ tw: "gap-2", css: "gap: 0.5rem", level: "expert" },
-	{ tw: "gap-3", css: "gap: 0.75rem", level: "expert" },
-	{ tw: "gap-4", css: "gap: 1rem", level: "medium" },
-	{ tw: "gap-6", css: "gap: 1.5rem", level: "expert" },
-	{ tw: "gap-8", css: "gap: 2rem", level: "expert" },
-	{ tw: "gap-x-4", css: "column-gap: 1rem", level: "expert" },
-	{ tw: "gap-y-4", css: "row-gap: 1rem", level: "expert" },
-	{ tw: "gap-[10px]", css: "gap: 10px", level: "medium" },
-	{ tw: "gap-[5px]", css: "gap: 5px", level: "medium" },
-	{ tw: "gap-[1.5rem]", css: "gap: 1.5rem", level: "expert" },
-	// Z-index
-	{ tw: "z-0", css: "z-index: 0", level: "easy" },
-	{ tw: "z-10", css: "z-index: 10", level: "easy" },
-	{ tw: "z-20", css: "z-index: 20", level: "easy" },
-	{ tw: "z-50", css: "z-index: 50", level: "easy" },
-	{ tw: "z-auto", css: "z-index: auto", level: "expert" },
-	{ tw: "z-[100]", css: "z-index: 100", level: "medium" },
-	{ tw: "z-[9999]", css: "z-index: 9999", level: "medium" },
-	{ tw: "z-[-1]", css: "z-index: -1", level: "medium" },
-	// Order
-	{ tw: "order-first", css: "order: -9999", level: "expert" },
-	{ tw: "order-last", css: "order: 9999", level: "expert" },
-	{ tw: "order-none", css: "order: 0", level: "medium" },
-	{ tw: "order-1", css: "order: 1", level: "easy" },
-	{ tw: "order-2", css: "order: 2", level: "easy" },
-	{ tw: "order-3", css: "order: 3", level: "easy" },
-	{ tw: "order-[5]", css: "order: 5", level: "medium" },
-	// Opacity
-	{ tw: "opacity-0", css: "opacity: 0", level: "easy" },
-	{ tw: "opacity-25", css: "opacity: 0.25", level: "medium" },
-	{ tw: "opacity-50", css: "opacity: 0.5", level: "medium" },
-	{ tw: "opacity-75", css: "opacity: 0.75", level: "medium" },
-	{ tw: "opacity-100", css: "opacity: 1", level: "easy" },
-	{ tw: "opacity-[0.35]", css: "opacity: 0.35", level: "medium" },
-	{ tw: "opacity-[0.7]", css: "opacity: 0.7", level: "medium" },
-	// Border width
-	{ tw: "border-0", css: "border-width: 0px", level: "medium" },
-	{ tw: "border", css: "border-width: 1px", level: "easy" },
-	{ tw: "border-2", css: "border-width: 2px", level: "medium" },
-	{ tw: "border-4", css: "border-width: 4px", level: "medium" },
-	{ tw: "border-8", css: "border-width: 8px", level: "medium" },
-	{ tw: "border-t", css: "border-top-width: 1px", level: "expert" },
-	{ tw: "border-r", css: "border-right-width: 1px", level: "expert" },
-	{ tw: "border-b", css: "border-bottom-width: 1px", level: "expert" },
-	{ tw: "border-l", css: "border-left-width: 1px", level: "expert" },
-	{ tw: "border-[3px]", css: "border-width: 3px", level: "medium" },
-	{ tw: "border-t-[4px]", css: "border-top-width: 4px", level: "expert" },
-	// Border style
-	{ tw: "border-solid", css: "border-style: solid", level: "easy" },
-	{ tw: "border-dashed", css: "border-style: dashed", level: "medium" },
-	{ tw: "border-dotted", css: "border-style: dotted", level: "medium" },
-	{ tw: "border-double", css: "border-style: double", level: "medium" },
-	{ tw: "border-none", css: "border-style: none", level: "easy" },
-	// Border radius
-	{ tw: "rounded-none", css: "border-radius: 0px", level: "easy" },
-	{ tw: "rounded-sm", css: "border-radius: 0.125rem", level: "expert" },
-	{ tw: "rounded", css: "border-radius: 0.25rem", level: "expert" },
-	{ tw: "rounded-md", css: "border-radius: 0.375rem", level: "expert" },
-	{ tw: "rounded-lg", css: "border-radius: 0.5rem", level: "expert" },
-	{ tw: "rounded-xl", css: "border-radius: 0.75rem", level: "expert" },
-	{ tw: "rounded-2xl", css: "border-radius: 1rem", level: "expert" },
-	{ tw: "rounded-full", css: "border-radius: 9999px", level: "medium" },
-	{ tw: "rounded-[4px]", css: "border-radius: 4px", level: "medium" },
-	{ tw: "rounded-[50%]", css: "border-radius: 50%", level: "medium" },
-	{ tw: "rounded-[1.5rem]", css: "border-radius: 1.5rem", level: "medium" },
-	// Background - color
-	{ tw: "bg-[#ff0000]", css: "background-color: #ff0000", level: "medium" },
-	{ tw: "bg-[#1a1a2e]", css: "background-color: #1a1a2e", level: "medium" },
-	{ tw: "bg-[#f5f5f5]", css: "background-color: #f5f5f5", level: "medium" },
-	{ tw: "bg-[#ffffff]", css: "background-color: #ffffff", level: "medium" },
-	{ tw: "bg-[#000000]", css: "background-color: #000000", level: "medium" },
-	{ tw: "bg-[#06b6d4]", css: "background-color: #06b6d4", level: "medium" },
-	{ tw: "bg-[#0f172a]", css: "background-color: #0f172a", level: "medium" },
-	{ tw: "bg-[#f8fafc]", css: "background-color: #f8fafc", level: "medium" },
-	{
-		tw: "bg-[rgb(0,128,255)]",
-		css: "background-color: rgb(0,128,255)",
-		level: "expert",
-	},
-	{
-		tw: "bg-[rgba(0,0,0,0.5)]",
-		css: "background-color: rgba(0,0,0,0.5)",
-		level: "expert",
-	},
-	{
-		tw: "bg-[hsl(200,100%,50%)]",
-		css: "background-color: hsl(200,100%,50%)",
-		level: "expert",
-	},
-	{
-		tw: "bg-[oklch(0.7_0.15_200)]",
-		css: "background-color: oklch(0.7 0.15 200)",
-		level: "expert",
-	},
-	// Background - size
-	{ tw: "bg-auto", css: "background-size: auto", level: "expert" },
-	{ tw: "bg-cover", css: "background-size: cover", level: "medium" },
-	{ tw: "bg-contain", css: "background-size: contain", level: "medium" },
-	// Background - repeat
-	{ tw: "bg-repeat", css: "background-repeat: repeat", level: "medium" },
-	{ tw: "bg-no-repeat", css: "background-repeat: no-repeat", level: "medium" },
-	{ tw: "bg-repeat-x", css: "background-repeat: repeat-x", level: "expert" },
-	{ tw: "bg-repeat-y", css: "background-repeat: repeat-y", level: "expert" },
-	// Background - attachment
-	{ tw: "bg-fixed", css: "background-attachment: fixed", level: "expert" },
-	{ tw: "bg-local", css: "background-attachment: local", level: "expert" },
-	{ tw: "bg-scroll", css: "background-attachment: scroll", level: "expert" },
-	// Background - position
-	{ tw: "bg-center", css: "background-position: center", level: "easy" },
-	{ tw: "bg-top", css: "background-position: top", level: "easy" },
-	{ tw: "bg-bottom", css: "background-position: bottom", level: "easy" },
-	{ tw: "bg-left", css: "background-position: left", level: "easy" },
-	{ tw: "bg-right", css: "background-position: right", level: "easy" },
-	{ tw: "bg-left-top", css: "background-position: left top", level: "medium" },
-	{
-		tw: "bg-right-bottom",
-		css: "background-position: right bottom",
-		level: "medium",
-	},
-	// Box shadow
+import { coreUtils } from "@yummacss/core";
 
-	// Overflow
-	{ tw: "overflow-hidden", css: "overflow: hidden", level: "easy" },
-	{ tw: "overflow-auto", css: "overflow: auto", level: "easy" },
-	{ tw: "overflow-scroll", css: "overflow: scroll", level: "medium" },
-	{ tw: "overflow-visible", css: "overflow: visible", level: "medium" },
-	{ tw: "overflow-clip", css: "overflow: clip", level: "expert" },
-	{ tw: "overflow-x-hidden", css: "overflow-x: hidden", level: "expert" },
-	{ tw: "overflow-y-auto", css: "overflow-y: auto", level: "expert" },
-	// Outline
-	{
-		tw: "outline-none",
-		css: "outline: 2px solid transparent",
-		level: "medium",
-	},
-	{ tw: "outline", css: "outline-style: solid", level: "easy" },
-	{ tw: "outline-dashed", css: "outline-style: dashed", level: "medium" },
-	{ tw: "outline-dotted", css: "outline-style: dotted", level: "medium" },
-	{ tw: "outline-double", css: "outline-style: double", level: "expert" },
-	{ tw: "outline-0", css: "outline-width: 0px", level: "medium" },
-	{ tw: "outline-1", css: "outline-width: 1px", level: "medium" },
-	{ tw: "outline-2", css: "outline-width: 2px", level: "medium" },
-	{ tw: "outline-4", css: "outline-width: 4px", level: "medium" },
-	{ tw: "outline-offset-0", css: "outline-offset: 0px", level: "expert" },
-	{ tw: "outline-offset-2", css: "outline-offset: 2px", level: "expert" },
-	{ tw: "outline-offset-4", css: "outline-offset: 4px", level: "expert" },
-	// Transforms
-	{ tw: "rotate-0", css: "transform: rotate(0deg)", level: "expert" },
-	{ tw: "rotate-45", css: "transform: rotate(45deg)", level: "expert" },
-	{ tw: "rotate-90", css: "transform: rotate(90deg)", level: "expert" },
-	{ tw: "rotate-180", css: "transform: rotate(180deg)", level: "expert" },
-	{ tw: "rotate-[45deg]", css: "transform: rotate(45deg)", level: "expert" },
-	{ tw: "rotate-[135deg]", css: "transform: rotate(135deg)", level: "expert" },
-	{ tw: "scale-0", css: "transform: scale(0)", level: "expert" },
-	{ tw: "scale-50", css: "transform: scale(.5)", level: "expert" },
-	{ tw: "scale-100", css: "transform: scale(1)", level: "expert" },
-	{ tw: "scale-[1.2]", css: "transform: scale(1.2)", level: "expert" },
-	{ tw: "skew-x-[15deg]", css: "transform: skewX(15deg)", level: "expert" },
-	{
-		tw: "translate-x-full",
-		css: "transform: translateX(100%)",
-		level: "expert",
-	},
-	{
-		tw: "translate-y-full",
-		css: "transform: translateY(100%)",
-		level: "expert",
-	},
-	{
-		tw: "-translate-x-full",
-		css: "transform: translateX(-100%)",
-		level: "expert",
-	},
-	{
-		tw: "translate-y-[100%]",
-		css: "transform: translateY(100%)",
-		level: "expert",
-	},
-	{
-		tw: "translate-x-[-50%]",
-		css: "transform: translateX(-50%)",
-		level: "expert",
-	},
-	// Transition duration
-	{ tw: "duration-75", css: "transition-duration: 75ms", level: "expert" },
-	{ tw: "duration-150", css: "transition-duration: 150ms", level: "expert" },
-	{ tw: "duration-200", css: "transition-duration: 200ms", level: "expert" },
-	{ tw: "duration-300", css: "transition-duration: 300ms", level: "expert" },
-	{ tw: "duration-500", css: "transition-duration: 500ms", level: "expert" },
-	{ tw: "duration-700", css: "transition-duration: 700ms", level: "expert" },
-	{
-		tw: "duration-[400ms]",
-		css: "transition-duration: 400ms",
-		level: "expert",
-	},
-	{ tw: "duration-[2s]", css: "transition-duration: 2s", level: "expert" },
-	{ tw: "delay-[200ms]", css: "transition-delay: 200ms", level: "expert" },
-	// Visibility
-	{ tw: "visible", css: "visibility: visible", level: "easy" },
-	{ tw: "invisible", css: "visibility: hidden", level: "easy" },
-	{ tw: "collapse", css: "visibility: collapse", level: "expert" },
-	// Object fit
-	{ tw: "object-contain", css: "object-fit: contain", level: "medium" },
-	{ tw: "object-cover", css: "object-fit: cover", level: "medium" },
-	{ tw: "object-fill", css: "object-fit: fill", level: "expert" },
-	{ tw: "object-none", css: "object-fit: none", level: "expert" },
-	{ tw: "object-scale-down", css: "object-fit: scale-down", level: "expert" },
-	// Box sizing
-	{ tw: "box-border", css: "box-sizing: border-box", level: "medium" },
-	{ tw: "box-content", css: "box-sizing: content-box", level: "medium" },
-	// Float
-	{ tw: "float-left", css: "float: left", level: "easy" },
-	{ tw: "float-right", css: "float: right", level: "easy" },
-	{ tw: "float-none", css: "float: none", level: "easy" },
-	// Vertical align
-	{ tw: "align-top", css: "vertical-align: top", level: "medium" },
-	{ tw: "align-middle", css: "vertical-align: middle", level: "medium" },
-	{ tw: "align-bottom", css: "vertical-align: bottom", level: "medium" },
-	{ tw: "align-baseline", css: "vertical-align: baseline", level: "expert" },
-	{ tw: "align-text-top", css: "vertical-align: text-top", level: "expert" },
-	{
-		tw: "align-text-bottom",
-		css: "vertical-align: text-bottom",
-		level: "expert",
-	},
-	// Cursor
-	{ tw: "cursor-pointer", css: "cursor: pointer", level: "easy" },
-	{ tw: "cursor-not-allowed", css: "cursor: not-allowed", level: "expert" },
-	{ tw: "cursor-default", css: "cursor: default", level: "expert" },
-	{ tw: "cursor-wait", css: "cursor: wait", level: "expert" },
-	{ tw: "cursor-grab", css: "cursor: grab", level: "expert" },
-	{ tw: "cursor-grabbing", css: "cursor: grabbing", level: "expert" },
-	{ tw: "cursor-crosshair", css: "cursor: crosshair", level: "expert" },
-	{ tw: "cursor-move", css: "cursor: move", level: "medium" },
-	{ tw: "cursor-zoom-in", css: "cursor: zoom-in", level: "expert" },
-	{ tw: "cursor-zoom-out", css: "cursor: zoom-out", level: "expert" },
-	{ tw: "cursor-none", css: "cursor: none", level: "medium" },
-	// User select
-	{ tw: "select-none", css: "user-select: none", level: "expert" },
-	{ tw: "select-text", css: "user-select: text", level: "expert" },
-	{ tw: "select-all", css: "user-select: all", level: "expert" },
-	{ tw: "select-auto", css: "user-select: auto", level: "expert" },
-	// Pointer events
-	{ tw: "pointer-events-none", css: "pointer-events: none", level: "expert" },
-	{ tw: "pointer-events-auto", css: "pointer-events: auto", level: "expert" },
-	// Resize
-	{ tw: "resize-none", css: "resize: none", level: "medium" },
-	{ tw: "resize", css: "resize: both", level: "expert" },
-	{ tw: "resize-x", css: "resize: horizontal", level: "expert" },
-	{ tw: "resize-y", css: "resize: vertical", level: "expert" },
-	// Scroll
-	{ tw: "scroll-auto", css: "scroll-behavior: auto", level: "expert" },
-	{ tw: "scroll-smooth", css: "scroll-behavior: smooth", level: "expert" },
-	{ tw: "overscroll-auto", css: "overscroll-behavior: auto", level: "expert" },
-	{
-		tw: "overscroll-contain",
-		css: "overscroll-behavior: contain",
-		level: "expert",
-	},
-	{ tw: "overscroll-none", css: "overscroll-behavior: none", level: "expert" },
-	// Touch action
-	{ tw: "touch-auto", css: "touch-action: auto", level: "expert" },
-	{ tw: "touch-none", css: "touch-action: none", level: "expert" },
-	{ tw: "touch-pan-x", css: "touch-action: pan-x", level: "expert" },
-	{ tw: "touch-pan-y", css: "touch-action: pan-y", level: "expert" },
-	{
-		tw: "touch-manipulation",
-		css: "touch-action: manipulation",
-		level: "expert",
-	},
-	// Table
-	{ tw: "table-auto", css: "table-layout: auto", level: "expert" },
-	{ tw: "table-fixed", css: "table-layout: fixed", level: "expert" },
-	// List style
-	{ tw: "list-none", css: "list-style-type: none", level: "medium" },
-	{ tw: "list-disc", css: "list-style-type: disc", level: "medium" },
-	{ tw: "list-decimal", css: "list-style-type: decimal", level: "medium" },
-	// Text color
-	{ tw: "text-[#ff0000]", css: "color: #ff0000", level: "medium" },
-	{ tw: "text-[#ffffff]", css: "color: #ffffff", level: "easy" },
-	{ tw: "text-[#000000]", css: "color: #000000", level: "easy" },
-	{ tw: "text-[#3b82f6]", css: "color: #3b82f6", level: "medium" },
+const MEDIUM_PREFIXES = new Set([
+  "ws",   // ws-nw not ws-n
+  "ro",   // ro- not r-
+  "bs-o", // bs-o- not bs-
+  "bs-i", // bs-i- not bs-
+  "tdu",  // tdu- not td-
+  "cl",   // cl- not c-
+  "tr",   // translate
+  "ttx",  // translate-x
+  "tty",  // translate-y
+  "fw",   // fw-nw not fw-n
+]);
 
-	{ tw: "text-[#6366f1]", css: "color: #6366f1", level: "medium" },
-	{ tw: "text-[rgb(255,0,0)]", css: "color: rgb(255,0,0)", level: "expert" },
-	{
-		tw: "text-[rgba(0,0,0,0.5)]",
-		css: "color: rgba(0,0,0,0.5)",
-		level: "expert",
-	},
-	{
-		tw: "text-[hsl(220,90%,60%)]",
-		css: "color: hsl(220,90%,60%)",
-		level: "expert",
-	},
-	// Mix blend mode
-	{ tw: "mix-blend-normal", css: "mix-blend-mode: normal", level: "expert" },
-	{
-		tw: "mix-blend-multiply",
-		css: "mix-blend-mode: multiply",
-		level: "expert",
-	},
-	{ tw: "mix-blend-screen", css: "mix-blend-mode: screen", level: "expert" },
-	{ tw: "mix-blend-overlay", css: "mix-blend-mode: overlay", level: "expert" },
-	{ tw: "mix-blend-darken", css: "mix-blend-mode: darken", level: "expert" },
-	{ tw: "mix-blend-lighten", css: "mix-blend-mode: lighten", level: "expert" },
-	{
-		tw: "mix-blend-difference",
-		css: "mix-blend-mode: difference",
-		level: "expert",
-	},
-	// Isolation
-	{ tw: "isolate", css: "isolation: isolate", level: "expert" },
-	{ tw: "isolation-auto", css: "isolation: auto", level: "expert" },
-	// Appearance
-	{ tw: "appearance-none", css: "appearance: none", level: "medium" },
-	{ tw: "appearance-auto", css: "appearance: auto", level: "expert" },
-	// Will change
-	{ tw: "will-change-auto", css: "will-change: auto", level: "expert" },
-	{
-		tw: "will-change-scroll",
-		css: "will-change: scroll-position",
-		level: "expert",
-	},
-	{ tw: "will-change-contents", css: "will-change: contents", level: "expert" },
-	{
-		tw: "will-change-transform",
-		css: "will-change: transform",
-		level: "expert",
-	},
-	// Filters
-	{ tw: "grayscale", css: "filter: grayscale(100%)", level: "medium" },
-	{ tw: "grayscale-0", css: "filter: grayscale(0)", level: "expert" },
-	{ tw: "invert", css: "filter: invert(100%)", level: "medium" },
-	{ tw: "invert-0", css: "filter: invert(0)", level: "expert" },
-	{ tw: "sepia", css: "filter: sepia(100%)", level: "medium" },
-	{ tw: "sepia-0", css: "filter: sepia(0)", level: "expert" },
-	{ tw: "blur-none", css: "filter: blur(0)", level: "medium" },
-	{ tw: "blur", css: "filter: blur(8px)", level: "medium" },
-	{ tw: "blur-md", css: "filter: blur(12px)", level: "expert" },
-	{ tw: "brightness-0", css: "filter: brightness(0)", level: "medium" },
-	{ tw: "brightness-50", css: "filter: brightness(.5)", level: "medium" },
-	{ tw: "brightness-100", css: "filter: brightness(1)", level: "medium" },
-	{ tw: "brightness-150", css: "filter: brightness(1.5)", level: "expert" },
-	{ tw: "contrast-0", css: "filter: contrast(0)", level: "medium" },
-	{ tw: "contrast-100", css: "filter: contrast(1)", level: "medium" },
-	{ tw: "contrast-150", css: "filter: contrast(1.5)", level: "expert" },
-	// Accent color
-	{ tw: "accent-auto", css: "accent-color: auto", level: "medium" },
-	{ tw: "accent-[#3b82f6]", css: "accent-color: #3b82f6", level: "medium" },
-	{ tw: "accent-[#10b981]", css: "accent-color: #10b981", level: "medium" },
-];
+const MEDIUM_ENTRIES = new Set([
+  "p-s",   // position: static
+  "p-st",  // position: sticky
+  "tor-b", // transform-origin: bottom
+  "tor-c", // transform-origin: center
+  "tor-t", // transform-origin: top
+  "tor-l", // transform-origin: left (0)
+  "tor-r", // transform-origin: right (100%)
+]);
+
+const EXPERT_PREFIXES = new Set([
+  "sst", "ssa", "sss",               // scroll-snap
+  "ob", "obb", "obi", "obx", "oby",  // overscroll
+  "bf-b", "bf-g",                    // backdrop filters
+  "bbr", "blr", "brr",               // logical border radius (shorthand)
+  "bblr", "bbrr",                    // border-bottom-*-radius
+  "bber", "bisr", "bier",            // border logical
+  "besr", "beer", "bbsr",            // border logical
+  "bssr", "bser",                    // border logical
+]);
+
+// tor-bl, tor-br, tor-tl, tor-tr are expert — LightningCSS optimized them
+// to coordinate pairs (e.g. "100% 0") instead of readable keywords
+const EXPERT_ENTRIES = new Set([
+  "tor-bl",
+  "tor-br",
+  "tor-tl",
+  "tor-tr",
+]);
+
+// Only these numeric keys are allowed — they are intuitive anchors
+const ALLOWED_NUMERIC_KEYS = new Set(["0", "1", "2", "3", "4"]);
+
+function isExcluded(key, value) {
+  const isNumeric = !isNaN(Number(key)) && key.trim() !== "";
+
+  // exclude numeric keys not in the whitelist
+  if (isNumeric && !ALLOWED_NUMERIC_KEYS.has(key)) return true;
+
+  // exclude hex colors — yumma css only outputs hex (with alpha channel)
+  if (value.startsWith("#")) return true;
+
+  return false;
+}
+
+function getLevel(prefix, classname) {
+  if (EXPERT_ENTRIES.has(classname)) return "expert";
+  if (MEDIUM_ENTRIES.has(classname)) return "medium";
+  if (EXPERT_PREFIXES.has(prefix)) return "expert";
+  if (MEDIUM_PREFIXES.has(prefix)) return "medium";
+  return "easy";
+}
+
+const utils = coreUtils();
+
+export const POOL = Object.entries(utils).flatMap(([, utility]) =>
+  Object.entries(utility.values)
+    .filter(([key, value]) => !isExcluded(key, value))
+    .map(([key, value]) => {
+      const classname = `${utility.prefix}-${key}`;
+      return {
+        yu: classname,
+        css: `${utility.properties[0]}: ${value}`,
+        level: getLevel(utility.prefix, classname),
+      };
+    })
+);

@@ -7,100 +7,99 @@ export function scoreMessage(correct, total) {
 
 	if (correct === total)
 		return pick([
-			"Flawless. Both Kevin Powell and Adam Wathan are proud.",
-			"Basically a Tailwind compiler at this point.",
-			"Amazing. Did you have the docs open in another tab?",
-			"Adam Wathan wants to hire you.",
-			"Perfect score. You don't use autocomplete, do you?",
-			"Flawless. The CSS gods bow.",
+			"Perfeito!",
+			"ACE!",
+			"Did you swallow the entire Yumma CSS docs?",
+			"You don't need IntelliSense. You ARE IntelliSense.",
+			"Renildo wants to hire you!",
 		]);
+
 	if (pct >= 0.9)
 		return pick([
-			"One class escaped. It won't next time.",
-			"So close. The missing point is haunting you, isn't it.",
-			"Nearly perfect. Your muscle memory is almost there.",
-			"A rounding error away from greatness.",
-			"One away from flawless. Infuriating, isn't it?",
-			"Silver medal CSS. Still incredibly impressive.",
+			"One slipped. It won't next time.",
+			"Almost flawless. The framework respects you.",
+			"So close. The missing point is haunting you.",
+			"One away from Perfeito. Infuriating, isn't it?",
+			"Nearly. Your muscle memory is almost there.",
 		]);
+
 	if (pct >= 0.8)
 		return pick([
-			"Certified CSS nerd. Wear it with pride.",
-			"Excellent recall and blistering speed!",
-			"Your brain loads faster than most websites.",
-			"Really solid. Your brain is a stylesheet.",
-			"Great work. Tailwind would be proud. Probably.",
-			"The stylesheet gods nod approvingly.",
+			"Certified Yumma CSS nerd. Wear it.",
+			"Renildo Pereira would be very proud of you!",
+			"Your brain is basically a compiled stylesheet.",
+			"Really solid. The framework nods approvingly.",
+			"Great work. The docs are proud of you.",
 		]);
+
 	if (pct >= 0.7)
 		return pick([
-			"Solid. A few were just `flex` in a trenchcoat.",
-			"Your CSS is stronger than your doubt.",
-			"Most classes mastered, a few still plotting against you.",
-			"You're in the top half. Comfortably.",
+			"You know enough to be dangerous.",
+			"Solid. A few abbreviations still hiding from you.",
+			"Most of it locked in. Keep grinding.",
 			"Not bad at all. Respectable territory.",
-			"IntelliSense is starting to feel threatened.",
+			"The framework is warming up to you.",
 		]);
+
 	if (pct >= 0.6)
 		return pick([
-			"Strong score. The utility classes respect you.",
+			"Half stylesheet, half guesswork. Respectable.",
 			"Good effort. Still faster than reading the docs.",
-			"Solid. A few classes still hiding from you.",
-			"Not bad. Your co-workers are impressed (probably).",
-			"Decent. You know enough to be dangerous.",
 			"More than half right. IntelliSense is nervous.",
+			"Not bad. Your co-workers are impressed. Probably.",
+			"Decent. The abbreviations are starting to click.",
 		]);
+
 	if (pct >= 0.5)
 		return pick([
 			"Exactly half. A coin flip with knowledge.",
-			"You're at the crossroads of CSS enlightenment.",
-			"Middle of the pack. The median is not the destination.",
-			"Half right. The others are just waiting to be learned.",
-			"Half credit. CSS giveth and CSS taketh away.",
+			"Half right. The other half are just waiting to be learned.",
 			"The stylesheet is on the fence about you.",
+			"Middle of the pack. Not the destination.",
+			"Half credit. CSS giveth and CSS taketh away.",
 		]);
+
 	if (pct >= 0.4)
 		return pick([
-			"Getting there. Keep grinding.",
-			"Statistically, not terrible.",
+			"The abbreviations are not random, maybe try reading the docs?",
 			"Keep going. You're in the learning zone.",
 			"A work in progress. Like most stylesheets.",
-			"The docs are your friend. Use them.",
 			"Below half, but the curve is upward.",
+			"Getting there. The docs miss you.",
 		]);
+
 	if (pct >= 0.3)
 		return pick([
 			"A foundation. A very small one.",
-			"A few correct. The rest are just warming up.",
 			"The docs miss you. Visit them sometime.",
-			"Progress! Probably. Better than zero.",
-			"The stylesheet is rooting for you. Quietly.",
 			"Room to grow. Lots of it.",
+			"Progress! Probably. Better than zero.",
+			"A few correct. The rest are just warming up.",
 		]);
+
 	if (pct >= 0.2)
 		return pick([
-			"Some good answers in there somewhere.",
-			"You tried. The effort was visible.",
+			"Have you tried reading the docs? Just once?",
 			"Hey, you showed up. That's step one.",
-			"Somewhere out there, a CSS class is crying.",
-			"Have you tried reading the Tailwind docs? Just once?",
-			"We all started somewhere. Keep at it!",
+			"We all started somewhere. Keep at it.",
+			"The framework is rooting for you. Quietly.",
+			"Some good answers in there. Somewhere.",
 		]);
+
 	if (correct === 1)
 		return pick([
 			"One correct answer. The only way is up.",
-			"Try Googling next time.",
-			"Yes, centering a div is hard. Keep at it.",
-			"Have you considered a career in backend?",
-			"The bravery to even try — noted.",
+			"Honestly, just use Tailwind at this point.",
 			"One right. The journey begins.",
+			"The bravery to even try — noted.",
+			"Yes, CSS is hard. Keep at it.",
 		]);
+
 	return pick([
-		"Did the cat walk over your keyboard?",
-		"Zero correct. The world stares back.",
-		"Did you try typing the question as the answer?",
-		"CSS is hard. This quiz is hard. Don't give up!",
-		"Take up backend development instead.",
-		"Better brush up on your CSS and Tailwind basics.",
+		"Even `d-none` can't hide this score.",
+		"Honestly, just use Tailwind at this point.",
+		"The abbreviations are not random. They just look like it.",
+		"Did you come here from Tailwind?",
+		"Zero correct. The stylesheet stares back.",
 	]);
 }
