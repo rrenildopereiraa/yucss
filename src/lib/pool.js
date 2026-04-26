@@ -67,17 +67,26 @@ function getLevel(prefix, classname) {
 
 const utils = coreUtils();
 
-export const POOL = Object.entries(utils)
-  .filter(([, utility]) => utility.properties.length === 1)
-  .flatMap(([, utility]) =>
-    Object.entries(utility.values)
-      .filter(([key, value]) => !isExcluded(key, value))
-      .map(([key, value]) => {
-        const classname = `${utility.prefix}-${key}`;
-        return {
-          yu: classname,
-          css: `${utility.properties[0]}: ${value}`,
-          level: getLevel(utility.prefix, classname),
-        };
-      })
-  );
+export const POOL = (() => {
+  const seen = new Set();
+  return Object.entries(utils)
+    .filter(([, utility]) => utility.properties.length === 1)
+    .flatMap(([, utility]) =>
+      Object.entries(utility.values)
+        .filter(([key, value]) => !isExcluded(key, value))
+        .map(([key, value]) => {
+          const classname = `${utility.prefix}-${key}`;
+          const css = `${utility.properties[0]}: ${value}`;
+          return {
+            yu: classname,
+            css,
+            level: getLevel(utility.prefix, classname),
+          };
+        })
+    )
+    .filter(({ css }) => {
+      if (seen.has(css)) return false;
+      seen.add(css);
+      return true;
+    });
+})();
