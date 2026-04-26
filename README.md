@@ -32,4 +32,4 @@ npm run dev
 
 ## Disclaimer
 
-Not affiliated with or endorsed by Yumma CSS Labs, Inc.
+This project is a fork of https://www.csswind.com/
