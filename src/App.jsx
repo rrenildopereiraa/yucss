@@ -689,8 +689,8 @@ export default function YuCSS() {
 						<p>Built with and for <a href="https://yummacss.com" target="_blank" rel="noreferrer">Yumma CSS</a>.</p>
 						<p>
 							Forked from{" "}
-							<a href="https://www.yucss.vercel.app" target="_blank" rel="noreferrer">
-								yucss
+							<a href="https://www.yucss.csswind.com" target="_blank" rel="noreferrer">
+								csswind
 							</a>{" "}
 							by Paul Wright &amp; Theo Soti.
 						</p>
