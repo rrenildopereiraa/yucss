@@ -33,8 +33,7 @@ const EXPERT_PREFIXES = new Set([
   "bs-o", "bs-i",                    // box-shadow (expert: framework familiarity required)
 ]);
 
-// tor-bl, tor-br, tor-tl, tor-tr are expert — LightningCSS optimized them
-// to coordinate pairs (e.g. "100% 0") instead of readable keywords
+// tor-bl, tor-br, tor-tl, tor-tr are hard to guess due to the abbreviation convention nature
 const EXPERT_ENTRIES = new Set([
   "tor-bl",
   "tor-br",
@@ -42,16 +41,15 @@ const EXPERT_ENTRIES = new Set([
   "tor-tr",
 ]);
 
-// Only these numeric keys are allowed — they are intuitive anchors
 const ALLOWED_NUMERIC_KEYS = new Set(["0", "1", "2", "3", "4"]);
 
 function isExcluded(key, value) {
   const isNumeric = !isNaN(Number(key)) && key.trim() !== "";
 
-  // exclude numeric keys not in the whitelist
+  // any numeric util above -4 won't be considered
   if (isNumeric && !ALLOWED_NUMERIC_KEYS.has(key)) return true;
 
-  // exclude hex colors — yumma css only outputs hex (with alpha channel)
+  // exclude hex colors (they won't guess this)
   if (value.startsWith("#")) return true;
 
   return false;
