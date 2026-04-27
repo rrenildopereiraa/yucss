@@ -22,17 +22,6 @@ npm install
 npm run dev
 ```
 
-## Developers
-
-- Paul Wright @ [suedeapple](https://www.suedeapple.co.uk)
-- Theo Soti @ [theosoti.com](https://www.theosoti.com)
-- Renildo Pereira @ [rrenildopereiraa](https://x.com/rrenildoo)
-
-## Testing
-
-- Paul Wright @ [suedeapple](https://www.suedeapple.co.uk)
-- Renildo Pereira @ [rrenildopereiraa](https://x.com/rrenildoo)
-
 ## Disclaimer
 
 This project is a fork of https://www.csswind.com/
