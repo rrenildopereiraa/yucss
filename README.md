@@ -24,4 +24,4 @@ npm run dev
 
 ## Disclaimer
 
-This project is a fork of https://www.csswind.com/
+This project is a fork of https://github.com/suedeapple/csswind
